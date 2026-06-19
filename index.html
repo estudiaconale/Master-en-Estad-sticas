@@ -124,7 +124,7 @@
           <button @click="currentView = 'units'" :class="['px-3 py-2 rounded-lg text-sm font-medium transition', currentView === 'units' ? 'bg-slate-100 dark:bg-zinc-800 text-brand-600 dark:text-white' : 'text-slate-600 dark:text-zinc-300 hover:bg-slate-50 dark:hover:bg-zinc-800']">
             <i class="fa-solid fa-book-open mr-1.5"></i> Unidades
           </button>
-          <button @click="currentView = 'practice'" :class="['px-3 py-2 rounded-lg text-sm font-medium transition', currentView === 'practice' ? 'bg-slate-100 dark:bg-zinc-800 text-brand-600 dark:text-white' : 'text-slate-600 dark:text-zinc-300 hover:bg-slate-50 dark:hover:bg-zinc-800']">
+          <button @click="currentView = 'practice'" :class="['px-3 py-2 rounded-lg text-sm font-medium transition', currentView === 'practice' ? 'bg-slate-100 dark:bg-zinc-850 text-brand-600 dark:text-white' : 'text-slate-600 dark:text-zinc-300 hover:bg-slate-50 dark:hover:bg-zinc-800']">
             <i class="fa-solid fa-dumbbell mr-1.5"></i> Práctica Personalizada
           </button>
           <button @click="currentView = 'quizzes'" :class="['px-3 py-2 rounded-lg text-sm font-medium transition', currentView === 'quizzes' ? 'bg-slate-100 dark:bg-zinc-800 text-brand-600 dark:text-white' : 'text-slate-600 dark:text-zinc-300 hover:bg-slate-50 dark:hover:bg-zinc-800']">
@@ -412,7 +412,8 @@
                       <h5 class="text-base font-bold text-slate-900 dark:text-white mt-0.5 mb-3">Fórmulas Clave</h5>
                       <div class="space-y-3 font-mono text-sm bg-white dark:bg-zinc-900 p-3.5 rounded-xl border border-slate-100 dark:border-zinc-800">
                         <div v-for="formula in currentTopic.formulas" :key="formula.math" class="p-2 border-b last:border-0 border-slate-50 dark:border-zinc-850">
-                          <p class="text-center py-2 text-base text-indigo-600 dark:text-indigo-400 select-all">$${{ formula.math }}$$</p>
+                          <!-- FIXED: Decoupled Vue syntax from MathJax parser with clean v-html strings -->
+                          <div class="text-center py-2 text-base text-indigo-600 dark:text-indigo-400 select-all" v-html="'$$' + formula.math + '$$'"></div>
                           <p class="text-xs text-slate-500 dark:text-zinc-400 mt-1 font-sans"><strong>Interpretación:</strong> {{ formula.meaning }}</p>
                         </div>
                       </div>
@@ -486,7 +487,8 @@
                         </div>
                         <div class="p-3 bg-slate-50 dark:bg-zinc-850 rounded-xl">
                           <span class="font-bold text-slate-700 dark:text-zinc-300 block mb-1">Fórmula & Razón de uso:</span>
-                          <span class="text-indigo-600 dark:text-indigo-400 font-mono block select-all mb-1">$${{ ex.formula }}$$</span>
+                          <!-- FIXED: v-html string isolated formula display -->
+                          <div class="text-indigo-600 dark:text-indigo-400 font-mono block select-all mb-1" v-html="'$$' + ex.formula + '$$'"></div>
                           <span class="text-[11px] text-slate-500 dark:text-zinc-400 italic">{{ ex.whyFormula }}</span>
                         </div>
                       </div>
@@ -511,9 +513,8 @@
                         <p class="text-sm font-bold text-slate-900 dark:text-white flex items-center">
                           <i class="fa-solid fa-circle-check text-emerald-500 mr-2"></i> Resultado Final & Significado:
                         </p>
-                        <div class="text-sm text-slate-800 dark:text-zinc-200 font-mono select-all text-center py-2 bg-white dark:bg-zinc-900 rounded-lg">
-                          $${{ ex.result }}$$
-                        </div>
+                        <!-- FIXED: Decoupled final result calculation display -->
+                        <div class="text-sm text-slate-800 dark:text-zinc-200 font-mono select-all text-center py-2 bg-white dark:bg-zinc-900 rounded-lg" v-html="'$$' + ex.result + '$$'"></div>
                         <p class="text-xs text-slate-600 dark:text-zinc-300 italic pl-1">
                           <strong>Interpretación Estadística:</strong> {{ ex.interpretation }}
                         </p>
@@ -543,7 +544,8 @@
 
                       <!-- Hint Toggler -->
                       <div class="space-y-2">
-                        <button @click="act.showHint = !act.showHint" class="text-xs font-semibold text-brand-600 dark:text-indigo-400 flex items-center gap-1 hover:underline">
+                        <!-- FIXED: triggerMathJaxTypeset() called on interaction toggle -->
+                        <button @click="act.showHint = !act.showHint; triggerMathJaxTypeset()" class="text-xs font-semibold text-brand-600 dark:text-indigo-400 flex items-center gap-1 hover:underline">
                           <i class="fa-solid fa-circle-info"></i> {{ act.showHint ? 'Ocultar Pista Académica' : 'Ver Pista o Sugerencia' }}
                         </button>
                         <p v-if="act.showHint" class="text-xs text-amber-700 bg-amber-50 dark:text-amber-400 dark:bg-amber-950/20 p-3 rounded-lg border border-amber-100/40">
@@ -553,7 +555,8 @@
 
                       <!-- Solution View Toggle -->
                       <div class="space-y-2">
-                        <button @click="act.showSolution = !act.showSolution" class="w-full text-center px-4 py-2.5 rounded-xl border border-slate-200 dark:border-zinc-800 hover:bg-slate-50 dark:hover:bg-zinc-800 text-sm font-bold transition">
+                        <!-- FIXED: triggerMathJaxTypeset() called on interaction toggle -->
+                        <button @click="act.showSolution = !act.showSolution; triggerMathJaxTypeset()" class="w-full text-center px-4 py-2.5 rounded-xl border border-slate-200 dark:border-zinc-800 hover:bg-slate-50 dark:hover:bg-zinc-800 text-sm font-bold transition">
                           {{ act.showSolution ? 'Ocultar Resolución Completa' : 'Ver Resolución Propuesta' }}
                         </button>
                         <div v-if="act.showSolution" class="p-4 rounded-xl bg-indigo-50/20 border border-brand-100 dark:border-zinc-800 space-y-3">
@@ -650,7 +653,8 @@
                   <!-- Prompted Answer Input for student to verify against actual step solution -->
                   <div class="flex items-center gap-3">
                     <input type="text" v-model="item.studentAnswer" placeholder="Introduce tu resultado (ej: 0.85 o 14.5)..." class="flex-grow p-2.5 rounded-lg border bg-white dark:bg-zinc-800 text-sm">
-                    <button @click="item.showVerification = !item.showVerification" class="px-4 py-2.5 rounded-lg bg-slate-900 text-white hover:bg-black text-sm font-bold transition shrink-0">
+                    <!-- FIXED: triggerMathJaxTypeset() called on click verification toggle -->
+                    <button @click="item.showVerification = !item.showVerification; triggerMathJaxTypeset()" class="px-4 py-2.5 rounded-lg bg-slate-900 text-white hover:bg-black text-sm font-bold transition shrink-0">
                       {{ item.showVerification ? 'Ocultar Solución' : 'Verificar e Intentar' }}
                     </button>
                   </div>
@@ -659,11 +663,13 @@
                   <div v-if="item.showVerification" class="p-4 rounded-xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 space-y-3">
                     <div class="flex justify-between items-center text-xs font-bold text-slate-400">
                       <span>RESOLUCIÓN DETALLADA</span>
-                      <span>Fórmula: {{ item.formula }}</span>
+                      <!-- FIXED: MathJax clean inline wrapper -->
+                      <span>Fórmula: <span v-html="'$' + item.formula + '$'"></span></span>
                     </div>
                     <div class="text-sm text-slate-700 dark:text-zinc-300 space-y-2 latex-rendered" v-html="item.solution"></div>
                     <div class="p-3 rounded bg-green-50/60 dark:bg-emerald-950/20 text-xs text-emerald-800 dark:text-emerald-400">
-                      🏁 <strong>Resultado Correcto:</strong> {{ item.result }}
+                      <!-- FIXED: Decoupled final result container -->
+                      🏁 <strong>Resultado Correcto:</strong> <span v-html="'$' + item.result + '$'"></span>
                     </div>
                   </div>
                 </div>
@@ -825,19 +831,22 @@
                 </div>
                 <div class="p-3 bg-white dark:bg-zinc-900 rounded-xl border">
                   <span class="text-[10px] font-bold text-emerald-600 uppercase block mb-1">Fórmula Asociada</span>
-                  <p class="text-slate-700 dark:text-zinc-300 font-mono select-all">$${{ q.formula }}$$</p>
+                  <!-- FIXED: Decoupled Vue binding with v-html formatting -->
+                  <div class="text-slate-700 dark:text-zinc-300 font-mono select-all" v-html="'$$' + q.formula + '$$'"></div>
                 </div>
               </div>
 
               <!-- Answer Toggle Resolver -->
               <div class="mt-4">
-                <button @click="q.showResolution = !q.showResolution" class="w-full py-2 bg-white dark:bg-zinc-800 hover:bg-slate-100/60 rounded-xl border text-xs font-bold transition">
+                <!-- FIXED: triggerMathJaxTypeset() called on toggle exam answers -->
+                <button @click="q.showResolution = !q.showResolution; triggerMathJaxTypeset()" class="w-full py-2 bg-white dark:bg-zinc-800 hover:bg-slate-100/60 rounded-xl border text-xs font-bold transition">
                   {{ q.showResolution ? 'Ocultar Resolución Oficial' : 'Ver Guía de Resolución' }}
                 </button>
                 <div v-if="q.showResolution" class="mt-3 p-4 rounded-xl bg-white dark:bg-zinc-900 border border-indigo-100 space-y-3">
                   <div class="text-sm text-slate-700 dark:text-zinc-300 leading-relaxed latex-rendered" v-html="q.solution"></div>
                   <div class="p-3 bg-green-50 rounded text-xs text-emerald-800 font-bold">
-                    💡 Respuesta Correcta: {{ q.correctChoice }}
+                    <!-- FIXED: Decoupled sub-choice LaTeX display string -->
+                    💡 Respuesta Correcta: <span v-html="'$' + q.correctChoice + '$'"></span>
                   </div>
                 </div>
               </div>
@@ -867,7 +876,7 @@
                 {{ rIdx + 1 }}
               </div>
 
-              <div class="p-5 rounded-2xl border border-slate-100 dark:border-zinc-850 bg-slate-50/40 hover:bg-slate-50 transition-all duration-200">
+              <div class="p-5 rounded-2xl border border-slate-100 dark:border-zinc-855 bg-slate-50/40 hover:bg-slate-50 transition-all duration-200">
                 <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
                   <h4 class="text-lg font-bold text-slate-900 dark:text-white">{{ route.stepTitle }}</h4>
                   <span :class="['px-2.5 py-1 rounded text-[10px] font-extrabold uppercase', 
@@ -882,7 +891,8 @@
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs mb-3">
                   <div class="p-2.5 bg-white dark:bg-zinc-900 rounded-lg">
                     <span class="text-slate-400 block">Fórmula de Éxito:</span>
-                    <span class="font-mono text-indigo-500 font-semibold">$${{ route.keyFormula }}$$</span>
+                    <!-- FIXED: decouple with HTML parser string -->
+                    <span class="font-mono text-indigo-500 font-semibold" v-html="'$$' + route.keyFormula + '$$'"></span>
                   </div>
                   <div class="p-2.5 bg-white dark:bg-zinc-900 rounded-lg">
                     <span class="text-slate-400 block">Frecuencia en Examen:</span>
@@ -1164,7 +1174,8 @@
             </div>
 
             <div class="p-3.5 bg-green-50/60 rounded text-xs text-emerald-800 font-semibold leading-relaxed">
-              🎯 <strong>Resultado:</strong> <span class="font-mono text-sm">$${{ v.result }}$$</span>
+              <!-- FIXED: decoupled variant result render -->
+              🎯 <strong>Resultado:</strong> <span class="font-mono text-sm" v-html="'$$' + v.result + '$$'"></span>
             </div>
           </div>
         </div>
@@ -1240,7 +1251,7 @@
                   'Confundir variables ordinales con variables continuas solo porque admiten niveles.',
                   'No normalizar la frecuencia relativa dividiendo correctamente entre el número total de observaciones N.'
                 ],
-                examTips: [
+                extraTips: [
                   'Siempre revisa si los datos vienen agrupados en intervalos o sueltos antes de aplicar la fórmula de la media.',
                   'La suma total de todas las frecuencias relativas h_i siempre debe ser exactamente igual a 1.'
                 ],
@@ -1420,7 +1431,7 @@
               }
             ],
             glossary: [
-              { word: 'Suceso Independiente', definition: 'Sucesos que no se ven afectados entre sí. La ocurrencia de uno no varía la probabilidad del otro.' }
+              { word: 'Suceso Independiente', definition: 'Sucesos que no se ven afectados entre si. La ocurrencia de uno no varía la probabilidad del otro.' }
             ]
           },
           {
@@ -1578,7 +1589,7 @@
           triggerMathJaxTypeset();
         };
 
-        // --- CUSTOM RETRIVAL & SEARCH ENGINE ---
+        // --- CUSTOM RETRIEVAL & SEARCH ENGINE ---
         const showSearchModal = ref(false);
         const searchQuery = ref('');
         const searchResults = computed(() => {
@@ -1771,6 +1782,7 @@
             puntosXP.value += 20;
           }
           saveToLocalStorage();
+          triggerMathJaxTypeset(); // FIXED: Force immediate typesetting inside answers container
         };
 
         const getChoiceClass = (cIdx) => {
@@ -2082,7 +2094,7 @@
             }
           }
 
-          // Heurística de Clasificación basada en contenido para poblar unidades o exámenes reales
+          // Heurística de Clasificación basada en contenido para de un modo offline poblar la interfaz
           if (lowerSample.includes('examen') || lowerSample.includes('convocatoria') || lowerSample.includes('parcial')) {
             // Añadir nuevo examen real
             const customExamId = `exam_${Date.now()}`;
@@ -2265,10 +2277,18 @@
         const triggerMathJaxTypeset = () => {
           nextTick(() => {
             if (window.MathJax && window.MathJax.typesetPromise) {
-              window.MathJax.typesetPromise();
+              // FIXED: Clear typesetting cache of elements so MathJax forces parsing of Vue-modified HTML blocks
+              window.MathJax.typesetClear();
+              window.MathJax.typesetPromise()
+                .catch((err) => console.warn('MathJax typesetting failed: ', err));
             }
           });
         };
+
+        // FIXED: Universal Reactive Observers to trigger MathJax Typeset on any UI tab/navigation/topic state changes
+        watch([currentView, activeUnitTab, activeTopicIndex, explanationMode, selectedUnitIndex], () => {
+          triggerMathJaxTypeset();
+        });
 
         // --- PERSISTENT STORAGE CONTROLLERS ---
         const saveToLocalStorage = () => {
@@ -2360,11 +2380,6 @@
           }, 1000);
         });
 
-        // Trigger LaTeX rendering watch on views swap
-        watch(currentView, () => {
-          triggerMathJaxTypeset();
-        });
-
         return {
           darkMode,
           currentView,
@@ -2433,7 +2448,8 @@
           aiChatMessages,
           sendAIChatQuery,
           toggleTheme,
-          navigateMobile
+          navigateMobile,
+          triggerMathJaxTypeset
         };
       }
     }).mount('#app');
