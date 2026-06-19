@@ -166,11 +166,11 @@
       </div>
 
       <!-- Mobile Navigation Drawer -->
-      <div v-if="mobileMenuOpen" class="lg:hidden px-4 pt-2 pb-4 space-y-1 bg-white dark:bg-zinc-900 border-b border-slate-200 dark:border-zinc-800">
+      <div v-if="mobileMenuOpen" class="lg:hidden px-4 pt-2 pb-4 space-y-1 bg-white dark:bg-zinc-900 border-b border-slate-200/80 dark:border-zinc-800">
         <button @click="navigateMobile('units')" class="w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium block text-slate-700 dark:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-850">
           <i class="fa-solid fa-book-open w-6"></i> Unidades de Estudio
         </button>
-        <button @click="navigateMobile('exercise-library')" class="w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium block text-slate-700 dark:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-850">
+        <button @click="navigateMobile('exercise-library')" class="w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium block text-slate-700 dark:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-855">
           <i class="fa-solid fa-list-check w-6 text-emerald-500"></i> Biblioteca de Ejercicios
         </button>
         <button @click="navigateMobile('practice')" class="w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium block text-slate-700 dark:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-855">
@@ -225,10 +225,10 @@
             <button @click="currentView = 'exercise-library'" class="px-8 py-4 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold shadow-lg shadow-emerald-500/25 transform hover:-translate-y-0.5 transition">
               <i class="fa-solid fa-list-check mr-2"></i> Biblioteca de Ejercicios
             </button>
-            <button @click="currentView = 'quizzes'" class="px-8 py-4 rounded-2xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 text-slate-800 dark:text-white font-bold hover:bg-slate-50 dark:hover:bg-zinc-800 transition">
+            <button @click="currentView = 'quizzes'" class="px-8 py-4 rounded-2xl bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 text-slate-800 dark:text-white font-bold hover:bg-slate-50 dark:hover:bg-zinc-800 transition">
               <i class="fa-solid fa-circle-check mr-2 text-emerald-500"></i> Autoevaluación
             </button>
-            <button @click="currentView = 'exams'" class="px-8 py-4 rounded-2xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 text-slate-800 dark:text-white font-bold hover:bg-slate-50 dark:hover:bg-zinc-800 transition">
+            <button @click="currentView = 'exams'" class="px-8 py-4 rounded-2xl bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 text-slate-800 dark:text-white font-bold hover:bg-slate-50 dark:hover:bg-zinc-800 transition">
               <i class="fa-solid fa-graduation-cap mr-2 text-amber-500"></i> Resolver Exámenes
             </button>
           </div>
@@ -246,7 +246,7 @@
             </div>
 
             <div class="p-8 rounded-3xl bg-white dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800/80 shadow-sm">
-              <div class="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 flex items-center justify-center text-emerald-600 text-emerald-400 mb-6 text-xl">
+              <div class="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-955/40 flex items-center justify-center text-emerald-600 text-emerald-400 mb-6 text-xl">
                 <i class="fa-solid fa-wand-magic-sparkles"></i>
               </div>
               <h3 class="text-xl font-bold text-slate-900 dark:text-white">Motor de Extracción Real</h3>
@@ -256,7 +256,7 @@
             </div>
 
             <div class="p-8 rounded-3xl bg-white dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800/80 shadow-sm">
-              <div class="w-12 h-12 rounded-2xl bg-amber-50 dark:bg-amber-950/40 flex items-center justify-center text-amber-600 text-amber-400 mb-6 text-xl">
+              <div class="w-12 h-12 rounded-2xl bg-amber-50 dark:bg-amber-955/40 flex items-center justify-center text-amber-600 text-amber-400 mb-6 text-xl">
                 <i class="fa-solid fa-road"></i>
               </div>
               <h3 class="text-xl font-bold text-slate-900 dark:text-white">RAG de Alta Prioridad</h3>
@@ -322,7 +322,7 @@
                 </div>
 
                 <!-- Theory Multi-Level Mode Selectors -->
-                <div class="bg-indigo-50/50 dark:bg-brand-950/20 rounded-2xl p-4 border border-brand-100 dark:border-brand-950 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div class="bg-indigo-50/50 dark:bg-brand-955/20 rounded-2xl p-4 border border-brand-100 dark:border-brand-950 flex flex-col md:flex-row md:items-center justify-between gap-4">
                   <div>
                     <h4 class="text-sm font-bold text-slate-800 dark:text-white"><i class="fa-solid fa-sliders text-brand-500 mr-1.5"></i> Selector de Comprensión</h4>
                     <p class="text-xs text-slate-500 dark:text-zinc-400">¿Estás atascado? Ajusta la complejidad conceptual de la explicación.</p>
@@ -342,27 +342,9 @@
 
                 <!-- Live Dynamic Explanation Display -->
                 <div class="prose max-w-none dark:prose-invert">
-                  <div v-if="explanationMode === 'original'" class="space-y-4">
-                    <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-slate-100 dark:bg-zinc-800 text-xs text-slate-600 dark:text-zinc-300 font-mono">
-                      DOCUMENTO ORIGINAL EXTRAÍDO
-                    </div>
-                    <div class="text-slate-800 dark:text-zinc-100 leading-relaxed text-base space-y-4 latex-rendered" v-html="currentTopic.originalTheory"></div>
-                  </div>
-
-                  <div v-if="explanationMode === 'simplified'" class="space-y-4">
-                    <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-indigo-50 dark:bg-indigo-950/40 text-xs text-brand-600 dark:text-brand-300 font-semibold">
-                      EXPLICACIÓN SIMPLIFICADA REDISEÑADA
-                    </div>
-                    <div class="text-slate-700 dark:text-zinc-200 leading-relaxed text-base space-y-4 latex-rendered" v-html="currentTopic.simplifiedTheory"></div>
-                  </div>
-
-                  <div v-if="explanationMode === 'from_zero'" class="space-y-5 bg-gradient-to-br from-indigo-50/20 to-brand-50/10 dark:from-indigo-950/10 dark:to-zinc-900 p-6 rounded-2xl border border-brand-100/50 dark:border-zinc-800">
-                    <div class="flex items-center gap-2">
-                      <span class="px-2 py-0.5 rounded-md bg-brand-600 text-white text-xs font-bold tracking-wider">MODO PRINCIPIANTE</span>
-                      <span class="text-xs text-slate-500">Cero tecnicismos, explicaciones con analogías reales.</span>
-                    </div>
-                    <div class="text-slate-700 dark:text-zinc-200 leading-relaxed text-base space-y-4 latex-rendered" v-html="currentTopic.zeroTheory"></div>
-                  </div>
+                  <div class="text-slate-800 dark:text-zinc-100 leading-relaxed text-base space-y-4 latex-rendered" v-if="explanationMode === 'original'" v-html="currentTopic.originalTheory"></div>
+                  <div class="text-slate-700 dark:text-zinc-200 leading-relaxed text-base space-y-4 latex-rendered" v-if="explanationMode === 'simplified'" v-html="currentTopic.simplifiedTheory"></div>
+                  <div class="text-slate-700 dark:text-zinc-200 leading-relaxed text-base space-y-4 latex-rendered" v-if="explanationMode === 'from_zero'" v-html="currentTopic.zeroTheory"></div>
                 </div>
 
                 <!-- NEW: DETAILED CONNECTED PRACTICAL EXAMPLES (THEORY IMPROVEMENT) -->
@@ -382,7 +364,7 @@
                         <span :class="['px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider', 
                                       relEx.type === 'solved_exercise' ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300' :
                                       relEx.type === 'worked_example' ? 'bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300' :
-                                      relEx.type === 'self_assessment' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300' :
+                                      relEx.type === 'self_assessment' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-955 dark:text-emerald-300' :
                                       'bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-300']">
                           {{ formatType(relEx.type) }}
                         </span>
@@ -393,7 +375,7 @@
                         <p class="font-bold text-slate-900 dark:text-white text-sm">Enunciado / Consigna:</p>
                         <p class="text-xs text-slate-700 dark:text-zinc-300 latex-rendered" v-html="relEx.question"></p>
                         
-                        <div class="bg-white dark:bg-zinc-900 p-3.5 rounded-xl border border-slate-100 dark:border-zinc-850/80 text-xs">
+                        <div class="bg-white dark:bg-zinc-900 p-3.5 rounded-xl border border-slate-100 dark:border-zinc-855 text-xs">
                           <span class="font-bold block text-slate-500 mb-1">Fórmula Aplicada:</span>
                           <span class="font-mono text-indigo-500 font-semibold" v-html="'$$' + relEx.formula + '$$'"></span>
                         </div>
@@ -433,7 +415,7 @@
                     </div>
 
                     <!-- Common Mistakes -->
-                    <div class="p-5 rounded-2xl bg-red-50/40 dark:bg-red-950/10 border border-red-100 dark:border-red-900/50">
+                    <div class="p-5 rounded-2xl bg-red-50/40 dark:bg-red-955/10 border border-red-100 dark:border-red-900/50">
                       <span class="text-[10px] font-bold uppercase tracking-wider text-red-600">Errores Críticos</span>
                       <h5 class="text-base font-bold text-slate-900 dark:text-white mt-0.5 mb-3">Errores Comunes en Exámenes</h5>
                       <ul class="space-y-3">
@@ -445,7 +427,7 @@
                     </div>
 
                     <!-- Exam Tips -->
-                    <div class="p-5 rounded-2xl bg-amber-50/40 dark:bg-amber-950/10 border border-amber-100 dark:border-amber-900/50">
+                    <div class="p-5 rounded-2xl bg-amber-50/40 dark:bg-amber-95/10 border border-amber-100 dark:border-amber-900/50">
                       <span class="text-[10px] font-bold uppercase tracking-wider text-amber-600">Recomendaciones</span>
                       <h5 class="text-base font-bold text-slate-900 dark:text-white mt-0.5 mb-3">Tips para Aprobar</h5>
                       <ul class="space-y-3">
@@ -457,7 +439,7 @@
                     </div>
 
                     <!-- Topic Summary -->
-                    <div class="p-5 rounded-2xl bg-slate-50 dark:bg-zinc-850 border border-slate-200/60 dark:border-zinc-800">
+                    <div class="p-5 rounded-2xl bg-slate-50 dark:bg-zinc-855 border border-slate-200/60 dark:border-zinc-800">
                       <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Para Repasar</span>
                       <h5 class="text-base font-bold text-slate-900 dark:text-white mt-0.5 mb-3">Resumen Rápido</h5>
                       <p class="text-sm text-slate-600 dark:text-zinc-300 leading-relaxed font-sans" v-html="currentTopic.quickSummary"></p>
@@ -504,7 +486,7 @@
                       </div>
 
                       <div class="space-y-3">
-                        <p class="font-bold text-slate-950 dark:text-white flex items-center">
+                        <p class="font-bold text-slate-955 dark:text-white flex items-center">
                           <i class="fa-solid fa-list-ol text-brand-500 mr-2"></i> Resolución Guiada Paso a Paso:
                         </p>
                         <ol class="space-y-3 list-none pl-0">
@@ -587,7 +569,7 @@
         </div>
       </section>
 
-      <!-- NEW MODULE: EXERCISE LIBRARY -->
+      <!-- EXERCISE LIBRARY -->
       <section v-if="currentView === 'exercise-library'" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-6">
           <div>
@@ -620,7 +602,7 @@
               <option :value="null">Todos los Tipos</option>
               <option value="worked_example">Ejemplo Guiado (Clase)</option>
               <option value="solved_exercise">Ejercicio Resuelto (Manual)</option>
-              <option value="activity">Actividad de Aula</option>
+              <option value="activity">Actividad Práctica</option>
               <option value="self_assessment">Autoevaluación</option>
               <option value="exam_question">Pregunta de Examen Real</option>
             </select>
@@ -664,7 +646,7 @@
                 <span class="font-bold text-slate-400 block mb-1">Conceptos Clave:</span>
                 <span class="text-slate-700 dark:text-zinc-300 font-medium">{{ ex.concepts }}</span>
               </div>
-              <div class="p-3 bg-slate-50 dark:bg-zinc-850 rounded-xl">
+              <div class="p-3 bg-slate-50 dark:bg-zinc-855 rounded-xl">
                 <span class="font-bold text-slate-400 block mb-1">Fórmula Utilizada:</span>
                 <span class="text-indigo-600 dark:text-indigo-400 font-mono" v-html="'$' + ex.formula + '$'"></span>
               </div>
@@ -677,7 +659,7 @@
               </button>
             </div>
 
-            <div v-if="ex.showResolution" class="p-4 rounded-xl bg-slate-50 dark:bg-zinc-850 border space-y-3 animate-fade-in">
+            <div v-if="ex.showResolution" class="p-4 rounded-xl bg-slate-50 dark:bg-zinc-855 border space-y-3 animate-fade-in">
               <p class="text-xs font-bold text-indigo-600 uppercase">Paso a paso oficial:</p>
               <div class="text-xs text-slate-600 dark:text-zinc-400 leading-relaxed latex-rendered" v-html="ex.solution"></div>
               <div class="p-2.5 bg-green-50/60 dark:bg-emerald-950/20 text-xs text-emerald-800 dark:text-emerald-400 rounded-lg">
@@ -787,7 +769,7 @@
       <section v-if="currentView === 'quizzes'" class="max-w-4xl mx-auto px-4 py-8">
         <div class="p-8 rounded-3xl bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80 shadow-sm space-y-6">
           <div class="text-center max-w-lg mx-auto">
-            <span class="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 flex items-center justify-center text-emerald-600 text-xl mx-auto mb-4">
+            <span class="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-955/40 flex items-center justify-center text-emerald-600 text-xl mx-auto mb-4">
               <i class="fa-solid fa-circle-check"></i>
             </span>
             <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white">Autoevaluaciones Interactivas</h2>
@@ -952,7 +934,7 @@
       <section v-if="currentView === 'pass-route'" class="max-w-4xl mx-auto px-4 py-12">
         <div class="p-8 rounded-3xl bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80 shadow-sm space-y-8">
           <div class="text-center max-w-lg mx-auto">
-            <span class="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-950/40 flex items-center justify-center text-brand-600 text-xl mx-auto mb-4">
+            <span class="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-955/40 flex items-center justify-center text-brand-600 text-xl mx-auto mb-4">
               <i class="fa-solid fa-route"></i>
             </span>
             <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white">Ruta de Aprobado Seguro</h2>
@@ -1108,7 +1090,7 @@
           </span>
           <div>
             <h3 class="text-sm font-extrabold leading-tight">Tutor Inteligente RAG IA</h3>
-            <p class="text-[10px] opacity-80">Respaldado por Biblioteca del Alumno</p>
+            <p class="text-[10px] opacity-80">Respaldado por Gemini 2.5 Flash</p>
           </div>
         </div>
         <button @click="showAITutorGlobal = false" class="p-1 rounded-full hover:bg-white/20 text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
@@ -1117,12 +1099,12 @@
       <!-- Messages Stream parsed automatically for Math -->
       <div class="flex-grow p-4 overflow-y-auto space-y-4 text-xs font-sans" v-math>
         <!-- Notice if RAG context was injected -->
-        <div v-if="aiRagContextFound" class="p-3 bg-amber-50 dark:bg-amber-950/20 text-amber-900 dark:text-amber-300 border border-amber-150 rounded-xl text-[10px] leading-relaxed flex gap-2">
+        <div v-if="aiRagContextFound" class="p-3 bg-amber-50 dark:bg-amber-955/20 text-amber-900 dark:text-amber-300 border border-amber-150 rounded-xl text-[10px] leading-relaxed flex gap-2">
           <i class="fa-solid fa-graduation-cap text-base shrink-0 mt-0.5"></i>
           <span><strong>Contexto Local Encontrado:</strong> He Priorizado la Solución Oficial de tu profesor en la base de datos de ejercicios resueltos antes de generar la respuesta.</span>
         </div>
 
-        <div v-for="(msg, index) in aiChatMessages" :key="index" :class="['p-3.5 rounded-2xl max-w-[85%] leading-relaxed', msg.role === 'user' ? 'bg-indigo-50 text-indigo-950 self-end ml-auto' : 'bg-slate-100 text-slate-800 dark:bg-zinc-800 dark:text-zinc-200']">
+        <div v-for="(msg, index) in aiChatMessages" :key="index" :class="['p-3.5 rounded-2xl max-w-[85%] leading-relaxed', msg.role === 'user' ? 'bg-indigo-50 text-indigo-955 self-end ml-auto' : 'bg-slate-100 text-slate-800 dark:bg-zinc-800 dark:text-zinc-200']">
           <p class="font-bold text-[10px] opacity-60 mb-1 uppercase">{{ msg.role === 'user' ? 'Tú' : 'Tutor Inteligente' }}</p>
           <div class="latex-rendered space-y-2 text-xs" v-html="msg.text"></div>
         </div>
@@ -1161,7 +1143,7 @@
           <div v-if="searchResults.length === 0" class="text-center py-8 text-xs text-slate-400">
             Ningún resultado para tu consulta de búsqueda. Prueba con códigos de ejercicios o términos teóricos.
           </div>
-          <div v-else v-for="res in searchResults" :key="res.id" @click="goToSearchResult(res)" class="p-3 bg-slate-50 dark:bg-zinc-850 hover:bg-indigo-50/40 rounded-xl border transition cursor-pointer text-xs">
+          <div v-else v-for="res in searchResults" :key="res.id" @click="goToSearchResult(res)" class="p-3 bg-slate-50 dark:bg-zinc-855 hover:bg-indigo-50/40 rounded-xl border transition cursor-pointer text-xs">
             <div class="flex items-center justify-between mb-1">
               <span class="font-bold text-brand-600">{{ res.category }}</span>
               <span class="text-[10px] text-slate-400">{{ res.location }}</span>
@@ -1209,11 +1191,11 @@
         <!-- CMS Work area -->
         <div v-else class="flex-grow flex overflow-hidden">
           <!-- Sidebar tabs -->
-          <div class="w-64 border-r dark:border-zinc-800 bg-slate-50/50 dark:bg-zinc-950 p-4 space-y-2 shrink-0">
+          <div class="w-64 border-r dark:border-zinc-800 bg-slate-50/50 dark:bg-zinc-955 p-4 space-y-2 shrink-0">
             <button @click="activeAdminTab = 'upload'" :class="['w-full text-left p-3 rounded-xl text-xs font-bold flex items-center gap-2 transition', activeAdminTab === 'upload' ? 'bg-brand-600 text-white shadow-sm' : 'hover:bg-slate-100 dark:hover:bg-zinc-800 text-slate-600 dark:text-zinc-300']">
               <i class="fa-solid fa-file-upload"></i> Subir y Extraer PDF
             </button>
-            <button @click="activeAdminTab = 'knowledge-content'" :class="['w-full text-left p-3 rounded-xl text-xs font-bold flex items-center gap-2 transition', activeAdminTab === 'knowledge-content' ? 'bg-brand-600 text-white shadow-sm' : 'hover:bg-slate-100 dark:hover:bg-zinc-800 text-slate-600 dark:text-zinc-300']">
+            <button @click="activeAdminTab === 'knowledge-content' ? activeAdminTab = 'knowledge-content' : activeAdminTab = 'knowledge-content'" :class="['w-full text-left p-3 rounded-xl text-xs font-bold flex items-center gap-2 transition', activeAdminTab === 'knowledge-content' ? 'bg-brand-600 text-white shadow-sm' : 'hover:bg-slate-100 dark:hover:bg-zinc-800 text-slate-600 dark:text-zinc-300']">
               <i class="fa-solid fa-circle-nodes text-emerald-500"></i> Metadatos de la Base
             </button>
             <button @click="activeAdminTab = 'library'" :class="['w-full text-left p-3 rounded-xl text-xs font-bold flex items-center gap-2 transition', activeAdminTab === 'library' ? 'bg-brand-600 text-white shadow-sm' : 'hover:bg-slate-100 dark:hover:bg-zinc-800 text-slate-600 dark:text-zinc-300']">
@@ -1250,7 +1232,7 @@
               </div>
 
               <!-- Extraction quality validation report -->
-              <div v-if="stagedFile" class="p-6 rounded-2xl bg-slate-50 dark:bg-zinc-850 border border-brand-100 dark:border-brand-950 space-y-6 animate-fade-in">
+              <div v-if="stagedFile" class="p-6 rounded-2xl bg-slate-50 dark:bg-zinc-855 border border-brand-100 dark:border-brand-950 space-y-6 animate-fade-in">
                 <div class="flex items-center justify-between border-b pb-4">
                   <div>
                     <h5 class="text-sm font-bold text-slate-800 dark:text-white flex items-center gap-2">
@@ -1332,7 +1314,7 @@
               </div>
             </div>
 
-            <!-- TAB 2: KNOWLEDGE CONTENT VISIBILITY METRICS (NEW!) -->
+            <!-- TAB 2: KNOWLEDGE CONTENT VISIBILITY METRICS -->
             <div v-if="activeAdminTab === 'knowledge-content'" class="space-y-6">
               <div class="border-b pb-4 flex items-center justify-between">
                 <div>
@@ -1420,7 +1402,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="file in contentLibrary" :key="file.id" class="border-b border-slate-100 dark:border-zinc-800 text-xs hover:bg-slate-50/50 dark:hover:bg-zinc-850/50">
+                    <tr v-for="file in contentLibrary" :key="file.id" class="border-b border-slate-100 dark:border-zinc-800 text-xs hover:bg-slate-50/50 dark:hover:bg-zinc-855/50">
                       <td class="py-3.5 px-4 font-semibold text-slate-800 dark:text-zinc-200">
                         <i class="fa-solid fa-file-invoice text-indigo-500 mr-2"></i> {{ file.name }}
                       </td>
@@ -1457,7 +1439,7 @@
               </div>
 
               <!-- Priority Sort Block -->
-              <div class="p-5 rounded-2xl bg-indigo-50/50 dark:bg-brand-950/20 border border-brand-100 dark:border-brand-900/50 space-y-4">
+              <div class="p-5 rounded-2xl bg-indigo-50/50 dark:bg-brand-955/20 border border-brand-100 dark:border-brand-900/50 space-y-4">
                 <h5 class="text-xs font-extrabold uppercase text-brand-600 tracking-wider flex items-center gap-1.5"><i class="fa-solid fa-layer-group"></i> Prioridad de Consulta del Tutor</h5>
                 <p class="text-xs text-slate-500">Ordena la jerarquía de mayor a menor importancia usando los controles laterales.</p>
 
@@ -1493,7 +1475,7 @@
 
     <!-- CUSTOM CONFIRMATION MODALS -->
     <!-- Delete File Modal -->
-    <div v-if="showDeleteConfirmModal" class="fixed inset-0 bg-slate-950/50 backdrop-blur-xs z-55 flex items-center justify-center p-4">
+    <div v-if="showDeleteConfirmModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
       <div class="bg-white dark:bg-zinc-900 w-full max-w-sm rounded-2xl shadow-xl border border-slate-200 p-6 space-y-4 animate-scale-up">
         <div class="text-center">
           <i class="fa-solid fa-circle-exclamation text-red-500 text-4xl mb-3"></i>
@@ -1508,7 +1490,7 @@
     </div>
 
     <!-- Move / Reclassify File Modal -->
-    <div v-if="showMoveModal" class="fixed inset-0 bg-slate-950/50 backdrop-blur-xs z-55 flex items-center justify-center p-4">
+    <div v-if="showMoveModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
       <div class="bg-white dark:bg-zinc-900 w-full max-w-md rounded-2xl shadow-xl border border-slate-200 p-6 space-y-4 animate-scale-up">
         <h4 class="text-base font-bold text-slate-900 dark:text-white"><i class="fa-solid fa-shuffle mr-2 text-brand-600"></i> Reclasificar / Mover de Sección</h4>
         
@@ -1543,7 +1525,7 @@
     </div>
 
     <!-- Replace File Modal -->
-    <div v-if="showReplaceModal" class="fixed inset-0 bg-slate-950/50 backdrop-blur-xs z-55 flex items-center justify-center p-4">
+    <div v-if="showReplaceModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
       <div class="bg-white dark:bg-zinc-900 w-full max-w-sm rounded-2xl shadow-xl border border-slate-200 p-6 space-y-4 animate-scale-up">
         <h4 class="text-base font-bold text-slate-900 dark:text-white"><i class="fa-solid fa-arrows-rotate mr-2 text-indigo-500"></i> Reemplazar Archivo</h4>
         <p class="text-xs text-slate-500">Puedes reemplazar el archivo de base preservando toda su metadata, clasificación y prioridad de IA intactos.</p>
@@ -1566,7 +1548,7 @@
     </div>
 
     <!-- Edit Metadata Modal -->
-    <div v-if="showEditMetadataModal" class="fixed inset-0 bg-slate-950/50 backdrop-blur-xs z-55 flex items-center justify-center p-4">
+    <div v-if="showEditMetadataModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
       <div class="bg-white dark:bg-zinc-900 w-full max-w-md rounded-2xl shadow-xl border border-slate-200 p-6 space-y-4 animate-scale-up">
         <h4 class="text-base font-bold text-slate-900 dark:text-white"><i class="fa-solid fa-pen mr-2 text-brand-600"></i> Editar Metadata del Archivo</h4>
         
@@ -1722,7 +1704,7 @@
                   <p>La estadística descriptiva se encarga de resumir y estructurar la información obtenida de una muestra representativa de la población.</p>
                   <p>Las variables estadísticas se clasifican según su naturaleza de medida:</p>
                   <ul>
-                    <li><strong>Cualitativas:</strong> Expresan cualidades o atributos no numéricos. Pueden ser <em>Nominales</em> u <em>Ordinales</em>.</li>
+                    <li><strong>Cualitativas:</strong> Expresan cualidades u atributos no numéricos. Pueden ser <em>Nominales</em> u <em>Ordinales</em>.</li>
                     <li><strong>Cuantitativas:</strong> Expresan cantidades numéricas. Pueden ser <em>Discretas</em> o <em>Continuas</em>.</li>
                   </ul>
                   <p>La distribución de frecuencias agrupa los datos en tablas estructuradas por Frecuencia Absoluta ($f_i$) y Frecuencia Relativa ($h_i = f_i / N$).</p>
@@ -1921,6 +1903,31 @@
           { id: 'glossary', name: 'Glosario Temático', icon: 'fa-solid fa-language' }
         ];
 
+        // RENDER TRIGGER
+        const triggerMathRender = () => {
+          nextTick(() => {
+            const el = document.getElementById('app');
+            if (el && typeof renderMathInElement === 'function') {
+              renderMathInElement(el, {
+                delimiters: [
+                  {left: '$$', right: '$$', display: true},
+                  {left: '$', right: '$', display: false},
+                  {left: '\\(', right: '\\)', display: false},
+                  {left: '\\[', right: '\\]', display: true}
+                ],
+                throwOnError: false
+              });
+            }
+          });
+        };
+
+        const selectUnit = (index) => {
+          selectedUnitIndex.value = index;
+          activeTopicIndex.value = 0;
+          activeUnitTab.value = 'theory';
+          triggerMathRender();
+        };
+
         // --- NEW: EXERCISE LIBRARY FILTER SYSTEM ---
         const libFilters = ref({
           unitIdx: null,
@@ -1956,11 +1963,11 @@
         };
 
         const getBadgeStyle = (type) => {
-          if (type === 'worked_example') return 'bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300';
-          if (type === 'solved_exercise') return 'bg-indigo-100 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300';
-          if (type === 'activity') return 'bg-sky-100 text-sky-700 dark:bg-sky-950 dark:text-sky-300';
-          if (type === 'self_assessment') return 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300';
-          return 'bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-300';
+          if (type === 'worked_example') return 'bg-amber-100 text-amber-700 dark:bg-amber-955 dark:text-amber-300';
+          if (type === 'solved_exercise') return 'bg-indigo-100 text-indigo-700 dark:bg-indigo-955 dark:text-indigo-300';
+          if (type === 'activity') return 'bg-sky-100 text-sky-700 dark:bg-sky-955 dark:text-sky-300';
+          if (type === 'self_assessment') return 'bg-emerald-100 text-emerald-700 dark:bg-emerald-955 dark:text-emerald-300';
+          return 'bg-red-100 text-red-700 dark:bg-red-955 dark:text-red-300';
         };
 
         // --- NEW: KNOWLEDGE CONTENT VISIBILITY METRICS ---
@@ -2201,10 +2208,10 @@
 
           if (quizSetup.value.mode === 'practice' || quizSetup.value.mode === 'mastery') {
             if (cIdx === currentQuestion.value.correct) {
-              return 'bg-green-50 border-green-300 text-green-900 dark:bg-green-950/40 dark:border-green-900 dark:text-green-300';
+              return 'bg-green-50 border-green-300 text-green-900 dark:bg-green-955/40 dark:border-green-900 dark:text-green-300';
             }
             if (answered === cIdx && cIdx !== currentQuestion.value.correct) {
-              return 'bg-red-50 border-red-350 text-red-900 dark:bg-red-950/40 dark:border-red-900 dark:text-red-300';
+              return 'bg-red-50 border-red-350 text-red-900 dark:bg-red-955/40 dark:border-red-900 dark:text-red-300';
             }
           } else {
             if (answered === cIdx) {
@@ -2424,6 +2431,12 @@
         const targetExerciseForVariant = ref({});
         const generatedVariants = ref([]);
 
+        // FIXED: Re-added the missing definition of openAdminModal inside Vue setup()
+        const openAdminModal = () => {
+          showAdminModal.value = true;
+          adminForm.value = { username: '', password: '' };
+        };
+
         // Computed sortable AI Knowledge Sources derived from enabled library resources
         const prioritizedSources = computed({
           get() {
@@ -2488,12 +2501,10 @@
             stagedFile.value.parsedText = "Contenido curricular de estadística.";
           }
 
-          // --- SMART PARSER INTEGRATION (PDF SOLUTION INTEGRATION & QUALITY VALIDATION) ---
-          // Extracts every exercise & solution, then loads them into a convalidation wizard
+          // --- SMART PARSER INTEGRATION ---
           const parsedLines = stagedFile.value.parsedText.split('\n');
           const mockExtractedItems = [];
 
-          // Simulate automatic layout detection
           mockExtractedItems.push({
             id: `ex_extr_${Date.now()}_1`,
             type: 'solved_exercise',
@@ -2577,7 +2588,6 @@
         const publishStagedFile = () => {
           if (!stagedFile.value) return;
 
-          // Save the physical file in content library meta-database
           const newFile = {
             id: `lib_ref_${Date.now()}`,
             name: stagedFile.value.name,
@@ -2592,7 +2602,6 @@
           };
           contentLibrary.value.push(newFile);
 
-          // Add all convalidated first-class exercises to active exercisesDb!
           stagingForm.value.items.forEach(item => {
             const matchedTopic = units.value.flatMap(u => u.topics).find(t => t.id === item.topicId);
             const associatedUnitIdx = units.value.findIndex(u => u.topics.some(t => t.id === item.topicId)) || 0;
@@ -2766,7 +2775,6 @@
         // --- ALGEBRAIC SIMULATION ENGINE ---
         const triggerSimulateVariants = (ex) => {
           targetExerciseForVariant.value = ex;
-          // Local algebraic solver generating premium variations instantly
           generatedVariants.value = [{
             question: `Variante Académica Detectada: Se analiza la misma variable de estaturas de 5 personas con los siguientes valores observados: 1.62, 1.70, 1.84, 1.60, 1.74. Clasifica e indica el promedio central.`,
             solution: `1. <strong>Tipo de Variable:</strong> Cuantitativa continua.<br>2. <strong>Suma de las observaciones:</strong> $1.62 + 1.70 + 1.84 + 1.60 + 1.74 = 8.50$ metros.<br>3. <strong>Promedio central:</strong> $\\bar{x} = \\frac{8.50}{5} = 1.70$ metros.`,
@@ -2776,7 +2784,7 @@
           triggerMathRender();
         };
 
-        // --- GLOBAL TUTOR IA (RAG INTUITIVE SYSTEM & RETRIEVAL PRIORITIZATION) ---
+        // --- GLOBAL TUTOR IA ---
         const showAITutorGlobal = ref(false);
         const aiUserQuery = ref('');
         const aiLoading = ref(false);
@@ -2797,4 +2805,339 @@
           // Scroll to bottom
           nextTick(() => {
             const container = document.querySelector('.overflow-y-auto');
-            if (container) container
+            if (container) container.scrollTop = container.scrollHeight;
+          });
+
+          // RAG Prioritization: Scan exercisesDb first
+          const normalizedQuery = userText.toLowerCase();
+          const matchedExerciseInDb = exercisesDb.value.find(ex => 
+            normalizedQuery.includes(ex.id.toLowerCase()) || 
+            normalizedQuery.includes(ex.concepts.toLowerCase()) ||
+            (ex.question && normalizedQuery.includes(ex.question.toLowerCase().substring(0, 15)))
+          );
+
+          try {
+            let responseText = "";
+
+            if (matchedExerciseInDb) {
+              aiRagContextFound.value = true;
+              responseText = `He encontrado una resolución oficial relevante en la Base de Conocimientos:
+              
+              **${matchedExerciseInDb.title}** (Fuente: *${matchedExerciseInDb.sourcePdf}*)
+              
+              **Enunciado:** ${matchedExerciseInDb.question}
+              
+              **Concepto:** ${matchedExerciseInDb.concepts}
+              
+              **Fórmula Aplicada:** $$${matchedExerciseInDb.formula}$$
+              
+              **Resolución Oficial de Cátedra:**
+              ${matchedExerciseInDb.solution}
+              
+              **Resultado:** $$${matchedExerciseInDb.result}$$`;
+            } else {
+              if (apiKey === "") {
+                responseText = await simulateAIResponse(userText);
+              } else {
+                const systemPrompt = `Eres un catedrático de universidad de Estadística didáctico y empático. 
+                Ayudas al alumno a razonar paso a paso. Utiliza un tono motivador e incluye fórmulas matemáticas usando el formato de LaTeX encerrándolas en $ para inline y $$ para display matemático. Responde en español de forma concisa.`;
+                responseText = await fetchGeminiAPI(userText, systemPrompt);
+              }
+            }
+
+            aiChatMessages.value.push({ role: 'assistant', text: responseText });
+          } catch (error) {
+            aiChatMessages.value.push({ role: 'assistant', text: 'Error de conexión con el tutor. Por favor comprueba tu conexión de red o vuelve a intentarlo más tarde.' });
+          } finally {
+            aiLoading.value = false;
+            triggerMathRender();
+          }
+        };
+
+        const simulateAIResponse = (query) => {
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              const q = query.toLowerCase();
+              if (q.includes('bayes') || q.includes('probabilidad')) {
+                resolve(`El **Teorema de Bayes** calcula la probabilidad condicional inversa:
+                $$P(A|B) = \\frac{P(B|A)P(A)}{P(B)}$$
+                Donde $P(A|B)$ es la probabilidad de que ocurra la causa $A$ dado que ya ocurrió el evento $B$.`);
+              } else if (q.includes('normal') || q.includes('gauss')) {
+                resolve(`La **Distribución Normal** se representa por la campana simétrica. Para calcular probabilidades acumuladas tipificamos:
+                $$Z = \\frac{X - \\mu}{\\sigma}$$
+                Donde $\\mu$ es la media y $\\sigma$ la desviación típica.`);
+              } else if (q.includes('correlacion') || q.includes('pearson') || q.includes('regresion')) {
+                resolve(`El **Coeficiente de Pearson ($r$)** mide el grado de asociación lineal de dos variables estadísticas:
+                $$r = \\frac{S_{xy}}{S_x \\cdot S_y}$$
+                Recuerda que si $r > 0$ la relación es ascendente, si $r < 0$ descendente.`);
+              } else {
+                resolve(`Entendido. Para estimar parámetros de confianza poblacionales utilizamos:
+                $$E = z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}}$$
+                ¿Hay algún cálculo o ejercicio concreto que quieras que resolvamos paso a paso?`);
+              }
+            }, 1200);
+          });
+        };
+
+        const fetchGeminiAPI = async (query, systemPrompt) => {
+          const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+          const payload = {
+            contents: [{ parts: [{ text: query }] }],
+            systemInstruction: { parts: [{ text: systemPrompt }] }
+          };
+
+          let delay = 1000;
+          for (let i = 0; i < 5; i++) {
+            try {
+              const res = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+              });
+              if (res.ok) {
+                const data = await res.json();
+                return data.candidates?.[0]?.content?.parts?.[0]?.text;
+              }
+            } catch (err) {}
+            await new Promise(resolve => setTimeout(resolve, delay));
+            delay *= 2;
+          }
+          throw new Error("No response.");
+        };
+
+        // --- PERSISTENT STORAGE CONTROLLERS ---
+        const saveToLocalStorage = () => {
+          const state = {
+            racha: racha.value,
+            puntosXP: puntosXP.value,
+            mistakesList: mistakesList.value,
+            totalStudyTime: totalStudyTime.value,
+            totalExercisesSolved: totalExercisesSolved.value,
+            completedUnitsCount: completedUnitsCount.value,
+            accuracyRate: accuracyRate.value,
+            contentLibrary: contentLibrary.value,
+            exercisesDb: exercisesDb.value
+          };
+          localStorage.setItem('master_estadisticas_state_v2', JSON.stringify(state));
+        };
+
+        const loadFromLocalStorage = () => {
+          const saved = localStorage.getItem('master_estadisticas_state_v2');
+          if (saved) {
+            try {
+              const parsed = JSON.parse(saved);
+              racha.value = parsed.racha || 3;
+              puntosXP.value = parsed.puntosXP || 150;
+              mistakesList.value = parsed.mistakesList || [];
+              totalStudyTime.value = parsed.totalStudyTime || 45;
+              totalExercisesSolved.value = parsed.totalExercisesSolved || 12;
+              completedUnitsCount.value = parsed.completedUnitsCount || 1;
+              accuracyRate.value = parsed.accuracyRate || 85;
+              if (parsed.contentLibrary) contentLibrary.value = parsed.contentLibrary;
+              if (parsed.exercisesDb) exercisesDb.value = parsed.exercisesDb;
+            } catch (e) {}
+          }
+        };
+
+        const toggleTheme = () => {
+          darkMode.value = !darkMode.value;
+          if (darkMode.value) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        };
+
+        const navigateMobile = (view) => {
+          currentView.value = view;
+          mobileMenuOpen.value = false;
+          triggerMathRender();
+        };
+
+        onMounted(() => {
+          loadFromLocalStorage();
+          triggerMathRender();
+
+          setInterval(() => {
+            totalStudyTime.value += 1;
+            saveToLocalStorage();
+          }, 60000); 
+
+          // Init progress visual chart on mounting
+          setTimeout(() => {
+            const ctx = document.getElementById('progressChart')?.getContext('2d');
+            if (ctx) {
+              new Chart(ctx, {
+                type: 'radar',
+                data: {
+                  labels: ['U1: Lenguaje Descriptivo', 'U2: Regresión/Correlación', 'U3: Probabilidad/Bayes', 'U4: Gauss/Binomial', 'U5: Inferencia/Límites'],
+                  datasets: [{
+                    label: 'Nivel de Dominio (%)',
+                    data: [90, 75, 60, 80, 50],
+                    backgroundColor: 'rgba(99, 102, 241, 0.2)',
+                    borderColor: 'rgba(99, 102, 241, 1)',
+                    pointBackgroundColor: 'rgba(99, 102, 241, 1)',
+                    borderWidth: 2
+                  }]
+                },
+                options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  scales: {
+                    r: {
+                      angleLines: { display: true },
+                      suggestedMin: 0,
+                      suggestedMax: 100
+                    }
+                  }
+                }
+              });
+            }
+          }, 1000);
+        });
+
+        return {
+          darkMode,
+          currentView,
+          mobileMenuOpen,
+          racha,
+          puntosXP,
+          units,
+          selectedUnitIndex,
+          selectedUnit,
+          activeUnitTab,
+          activeTopicIndex,
+          currentTopic,
+          explanationMode,
+          unitTabs,
+          selectUnit,
+          showSearchModal,
+          searchQuery,
+          searchResults,
+          openSearchModal,
+          goToSearchResult,
+          practiceConfig,
+          activePracticeList,
+          generateCustomPractice,
+          quizSetup,
+          activeQuizState,
+          quizQuestions,
+          currentQuestionIndex,
+          answeredQuestions,
+          currentQuestion,
+          showImmediateFeedback,
+          startInteractiveQuiz,
+          selectQuizAnswer,
+          getChoiceClass,
+          nextQuizQuestion,
+          prevQuizQuestion,
+          examsList,
+          selectedExam,
+          openExamViewer,
+          passRoute,
+          navigateFromRoute,
+          mistakesList,
+          removeMistake,
+          isMistake,
+          toggleMistake,
+          completedUnitsCount,
+          accuracyRate,
+          totalStudyTime,
+          totalExercisesSolved,
+          showAdminModal,
+          adminAuthenticated,
+          adminForm,
+          openAdminModal,
+          verifyAdminCredentials,
+          logoutAdmin,
+          activeAdminTab,
+          docTypesList,
+          contentLibrary,
+          stagedFile,
+          stagingForm,
+          handleAdminFileSelect,
+          handleAdminPdfDrop,
+          publishStagedFile,
+          showDeleteConfirmModal,
+          fileToDeleteId,
+          triggerDeleteFile,
+          confirmDeleteFile,
+          showMoveModal,
+          fileToMove,
+          moveForm,
+          triggerMoveFile,
+          confirmMoveFile,
+          showReplaceModal,
+          fileToReplace,
+          replaceStagedFile,
+          triggerReplaceFile,
+          handleReplaceFileSelect,
+          confirmReplaceFile,
+          showEditMetadataModal,
+          fileToEditMetadata,
+          editMetadataForm,
+          triggerEditMetadata,
+          confirmEditMetadata,
+          toggleSourceEnabled,
+          moveSourceUp,
+          moveSourceDown,
+          prioritizedSources,
+          showVariantsModal,
+          targetExerciseForVariant,
+          generatedVariants,
+          triggerSimulateVariants,
+          showAITutorGlobal,
+          aiUserQuery,
+          aiLoading,
+          aiRagContextFound,
+          aiChatMessages,
+          sendAIChatQuery,
+          toggleTheme,
+          navigateMobile,
+          triggerMathRender,
+          exercisesDb,
+          libFilters,
+          filteredExercises,
+          formatType,
+          getBadgeStyle,
+          countStats,
+          deleteDatabaseRecord,
+          getRelatedExercises
+        };
+      }
+    });
+
+    // CUSTOM VUE DIRECTIVE FOR IMMEDIATE SECURE MATH PARSING ON INSERTS AND RE-RENDERS
+    vueApp.directive('math', {
+      mounted(el) {
+        if (typeof renderMathInElement === 'function') {
+          renderMathInElement(el, {
+            delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+            ],
+            throwOnError: false
+          });
+        }
+      },
+      updated(el) {
+        if (typeof renderMathInElement === 'function') {
+          renderMathInElement(el, {
+            delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+            ],
+            throwOnError: false
+          });
+        }
+      }
+    });
+
+    vueApp.mount('#app');
+  </script>
+</body>
+</html>
