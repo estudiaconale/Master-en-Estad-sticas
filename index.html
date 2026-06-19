@@ -42,7 +42,6 @@
   <!-- PDF.js, Mammoth.js and SheetJS (XLSX/CSV) for real on-browser file parsing -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
   <script>
-    // Configurar worker global para PDF.js
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
@@ -164,11 +163,11 @@
       </div>
 
       <!-- Mobile Navigation Drawer -->
-      <div v-if="mobileMenuOpen" class="lg:hidden px-4 pt-2 pb-4 space-y-1 bg-white dark:bg-zinc-900 border-b border-slate-200/80 dark:border-zinc-800">
+      <div v-if="mobileMenuOpen" class="lg:hidden px-4 pt-2 pb-4 space-y-1 bg-white dark:bg-zinc-900 border-b border-slate-200 dark:border-zinc-800">
         <button @click="navigateMobile('units')" class="w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium block text-slate-700 dark:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-850">
           <i class="fa-solid fa-book-open w-6"></i> Unidades de Estudio
         </button>
-        <button @click="navigateMobile('practice')" class="w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium block text-slate-700 dark:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-850">
+        <button @click="navigateMobile('practice')" class="w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium block text-slate-700 dark:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-855">
           <i class="fa-solid fa-dumbbell w-6"></i> Práctica Personalizada
         </button>
         <button @click="navigateMobile('quizzes')" class="w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium block text-slate-700 dark:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-850">
@@ -194,18 +193,15 @@
       
       <!-- LANDING PAGE VIEW -->
       <section v-if="currentView === 'landing'" class="py-12 md:py-20 relative overflow-hidden">
-        <!-- Glow effects background -->
         <div class="absolute -top-40 right-0 w-[500px] h-[500px] bg-indigo-200/40 dark:bg-indigo-900/20 rounded-full filter blur-[120px] pointer-events-none"></div>
         <div class="absolute top-80 -left-20 w-[400px] h-[400px] bg-brand-100/40 dark:bg-brand-900/10 rounded-full filter blur-[100px] pointer-events-none"></div>
 
         <div class="max-w-5xl mx-auto px-4 text-center relative">
-          <!-- Premium Batch -->
           <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-zinc-800 text-brand-600 dark:text-indigo-400 text-xs font-bold mb-6 tracking-wide shadow-sm border border-slate-200 dark:border-zinc-700">
             <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
             TUTOR INTELIGENTE DE ESTADÍSTICA ACTIVO 24/7
           </div>
 
-          <!-- Hero Headline -->
           <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
             MÁSTER EN ESTADÍSTICAS
           </h1>
@@ -216,7 +212,6 @@
             Domina la Estadística de nivel universitario a través de explicaciones guiadas, ejercicios resueltos paso a paso, práctica ilimitada y preparación intensiva de exámenes reales.
           </p>
 
-          <!-- Premium CTA Actions -->
           <div class="mt-10 flex flex-wrap justify-center gap-4">
             <button @click="currentView = 'units'" class="px-8 py-4 rounded-2xl bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-700 hover:to-indigo-700 text-white font-bold shadow-lg shadow-brand-500/25 hover:shadow-indigo-500/35 transform hover:-translate-y-0.5 transition">
               <i class="fa-solid fa-play mr-2"></i> Empezar a Estudiar
@@ -262,26 +257,6 @@
               <p class="mt-2.5 text-slate-600 dark:text-zinc-400 leading-relaxed text-sm">
                 Analizamos patrones de exámenes antiguos para decirte con precisión qué temas se repiten más, qué dominar primero y dónde están tus puntos débiles.
               </p>
-            </div>
-          </div>
-
-          <!-- Quick Statistics Summary -->
-          <div class="mt-16 py-8 border-t border-slate-200 dark:border-zinc-800 flex justify-around flex-wrap gap-6">
-            <div class="text-center">
-              <span class="block text-4xl font-extrabold text-brand-600">5</span>
-              <span class="text-sm font-medium text-slate-500">Unidades Maestras</span>
-            </div>
-            <div class="text-center">
-              <span class="block text-4xl font-extrabold text-emerald-600">50+</span>
-              <span class="text-sm font-medium text-slate-500">Ejercicios Guiados</span>
-            </div>
-            <div class="text-center">
-              <span class="block text-4xl font-extrabold text-purple-600">100%</span>
-              <span class="text-sm font-medium text-slate-500">Fórmulas Interpretadas</span>
-            </div>
-            <div class="text-center">
-              <span class="block text-4xl font-extrabold text-amber-600">∞</span>
-              <span class="text-sm font-medium text-slate-500">Generación de Variantes</span>
             </div>
           </div>
         </div>
@@ -361,49 +336,41 @@
 
                 <!-- Live Dynamic Explanation Display -->
                 <div class="prose max-w-none dark:prose-invert">
-                  <!-- Original Academic Level -->
                   <div v-if="explanationMode === 'original'" class="space-y-4">
                     <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-slate-100 dark:bg-zinc-800 text-xs text-slate-600 dark:text-zinc-300 font-mono">
                       DOCUMENTO ORIGINAL EXTRAÍDO
                     </div>
-                    <div class="text-slate-800 dark:text-zinc-100 leading-relaxed text-base space-y-4 latex-rendered" v-html="currentTopic.originalTheory">
-                    </div>
+                    <div class="text-slate-800 dark:text-zinc-100 leading-relaxed text-base space-y-4 latex-rendered" v-html="currentTopic.originalTheory"></div>
                   </div>
 
-                  <!-- Simplified Explanation Level -->
                   <div v-if="explanationMode === 'simplified'" class="space-y-4">
                     <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-indigo-50 dark:bg-indigo-950/40 text-xs text-brand-600 dark:text-brand-300 font-semibold">
                       EXPLICACIÓN SIMPLIFICADA REDISEÑADA
                     </div>
-                    <div class="text-slate-700 dark:text-zinc-200 leading-relaxed text-base space-y-4 latex-rendered" v-html="currentTopic.simplifiedTheory">
-                    </div>
+                    <div class="text-slate-700 dark:text-zinc-200 leading-relaxed text-base space-y-4 latex-rendered" v-html="currentTopic.simplifiedTheory"></div>
                   </div>
 
-                  <!-- Explain it From Zero Level (🐣) -->
                   <div v-if="explanationMode === 'from_zero'" class="space-y-5 bg-gradient-to-br from-indigo-50/20 to-brand-50/10 dark:from-indigo-950/10 dark:to-zinc-900 p-6 rounded-2xl border border-brand-100/50 dark:border-zinc-800">
                     <div class="flex items-center gap-2">
                       <span class="px-2 py-0.5 rounded-md bg-brand-600 text-white text-xs font-bold tracking-wider">MODO PRINCIPIANTE</span>
                       <span class="text-xs text-slate-500">Cero tecnicismos, explicaciones con analogías reales.</span>
                     </div>
-                    <div class="text-slate-700 dark:text-zinc-200 leading-relaxed text-base space-y-4 latex-rendered" v-html="currentTopic.zeroTheory">
-                    </div>
+                    <div class="text-slate-700 dark:text-zinc-200 leading-relaxed text-base space-y-4 latex-rendered" v-html="currentTopic.zeroTheory"></div>
                   </div>
                 </div>
 
-                <!-- Theory Metadata (Key Concepts, Formulas, Interpretation, Exam Tips) -->
+                <!-- Theory Metadata -->
                 <div class="mt-8 border-t border-slate-100 dark:border-zinc-800 pt-6 space-y-6">
                   <h4 class="text-lg font-bold text-slate-900 dark:text-white flex items-center">
                     <i class="fa-solid fa-layer-group text-brand-500 mr-2"></i> Estructura Teórica del Tema
                   </h4>
 
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Formulas Section -->
                     <div class="p-5 rounded-2xl bg-slate-50 dark:bg-zinc-850 border border-slate-200/60 dark:border-zinc-800">
                       <span class="text-[10px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">Modelado</span>
                       <h5 class="text-base font-bold text-slate-900 dark:text-white mt-0.5 mb-3">Fórmulas Clave</h5>
                       <div class="space-y-3 font-mono text-sm bg-white dark:bg-zinc-900 p-3.5 rounded-xl border border-slate-100 dark:border-zinc-800">
-                        <div v-for="formula in currentTopic.formulas" :key="formula.math" class="p-2 border-b last:border-0 border-slate-50 dark:border-zinc-850">
-                          <!-- Formatted dynamic formulas inside text nodes parsed on DOM insertions -->
+                        <div v-for="formula in currentTopic.formulas" :key="formula.math" class="p-2 border-b last:border-0 border-slate-50 dark:border-zinc-855">
                           <div class="text-center py-2 text-base text-indigo-600 dark:text-indigo-400 select-all" v-html="'$$' + formula.math + '$$'"></div>
                           <p class="text-xs text-slate-500 dark:text-zinc-400 mt-1 font-sans"><strong>Interpretación:</strong> {{ formula.meaning }}</p>
                         </div>
@@ -427,7 +394,7 @@
                       <span class="text-[10px] font-bold uppercase tracking-wider text-amber-600">Recomendaciones</span>
                       <h5 class="text-base font-bold text-slate-900 dark:text-white mt-0.5 mb-3">Tips para Aprobar</h5>
                       <ul class="space-y-3">
-                        <li v-for="tip in currentTopic.examTips" :key="tip" class="flex gap-2.5 text-sm text-slate-700 dark:text-zinc-300">
+                        <li v-for="tip in currentTopic.extraTips || currentTopic.examTips" :key="tip" class="flex gap-2.5 text-sm text-slate-700 dark:text-zinc-300">
                           <i class="fa-solid fa-lightbulb text-amber-500 mt-0.5 shrink-0"></i>
                           <span>{{ tip }}</span>
                         </li>
@@ -465,12 +432,10 @@
                       </div>
                     </div>
 
-                    <!-- Question Block -->
                     <div class="space-y-4">
                       <p class="font-bold text-slate-900 dark:text-white">Enunciado:</p>
                       <div class="text-slate-800 dark:text-zinc-200 bg-white dark:bg-zinc-900/60 p-4 rounded-xl border border-slate-100 dark:border-zinc-800 latex-rendered font-sans leading-relaxed" v-html="ex.question"></div>
                       
-                      <!-- Required Concepts & Formulas -->
                       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-3 text-xs">
                         <div class="p-3 bg-slate-50 dark:bg-zinc-850 rounded-xl">
                           <span class="font-bold text-slate-700 dark:text-zinc-300 block mb-1">Conceptos Necesarios:</span>
@@ -483,7 +448,6 @@
                         </div>
                       </div>
 
-                      <!-- Step-by-Step Resolution -->
                       <div class="space-y-3">
                         <p class="font-bold text-slate-950 dark:text-white flex items-center">
                           <i class="fa-solid fa-list-ol text-brand-500 mr-2"></i> Resolución Guiada Paso a Paso:
@@ -498,7 +462,6 @@
                         </ol>
                       </div>
 
-                      <!-- Final Result & Practical Interpretation -->
                       <div class="p-4 rounded-xl bg-green-50/40 dark:bg-emerald-950/10 border border-emerald-100 dark:border-emerald-900/50 mt-4 space-y-2">
                         <p class="text-sm font-bold text-slate-900 dark:text-white flex items-center">
                           <i class="fa-solid fa-circle-check text-emerald-500 mr-2"></i> Resultado Final & Significado:
@@ -531,7 +494,6 @@
                       <p class="font-bold text-slate-900 dark:text-white">Consigna o Enunciado:</p>
                       <div class="text-slate-800 dark:text-zinc-200 p-4 bg-slate-50 dark:bg-zinc-850 rounded-xl latex-rendered" v-html="act.statement"></div>
 
-                      <!-- Hint Toggler -->
                       <div class="space-y-2">
                         <button @click="act.showHint = !act.showHint; triggerMathRender()" class="text-xs font-semibold text-brand-600 dark:text-indigo-400 flex items-center gap-1 hover:underline">
                           <i class="fa-solid fa-circle-info"></i> {{ act.showHint ? 'Ocultar Pista Académica' : 'Ver Pista o Sugerencia' }}
@@ -541,7 +503,6 @@
                         </p>
                       </div>
 
-                      <!-- Solution View Toggle -->
                       <div class="space-y-2">
                         <button @click="act.showSolution = !act.showSolution; triggerMathRender()" class="w-full text-center px-4 py-2.5 rounded-xl border border-slate-200 dark:border-zinc-800 hover:bg-slate-50 dark:hover:bg-zinc-800 text-sm font-bold transition">
                           {{ act.showSolution ? 'Ocultar Resolución Completa' : 'Ver Resolución Propuesta' }}
@@ -584,7 +545,6 @@
             </p>
           </div>
 
-          <!-- Practice Configuration Form -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-slate-100 dark:border-zinc-800 pt-6">
             <div class="space-y-1">
               <label class="text-xs font-bold uppercase tracking-wider text-slate-500">Seleccionar Unidad</label>
@@ -620,7 +580,6 @@
             </div>
           </div>
 
-          <!-- Dynamic Generation Output -->
           <div v-if="activePracticeList.length" class="border-t border-slate-100 dark:border-zinc-800 pt-8 space-y-6">
             <div class="flex items-center justify-between">
               <h3 class="text-lg font-bold text-slate-900 dark:text-white"><i class="fa-solid fa-list-check text-brand-500 mr-1.5"></i> Tu Sesión de Práctica</h3>
@@ -637,7 +596,6 @@
                 <div class="space-y-4">
                   <div class="text-slate-800 dark:text-zinc-200 font-medium latex-rendered" v-html="item.question"></div>
 
-                  <!-- Prompted Answer Input for student to verify against actual step solution -->
                   <div class="flex items-center gap-3">
                     <input type="text" v-model="item.studentAnswer" placeholder="Introduce tu resultado (ej: 0.85 o 14.5)..." class="flex-grow p-2.5 rounded-lg border bg-white dark:bg-zinc-800 text-sm">
                     <button @click="item.showVerification = !item.showVerification; triggerMathRender()" class="px-4 py-2.5 rounded-lg bg-slate-900 text-white hover:bg-black text-sm font-bold transition shrink-0">
@@ -645,7 +603,6 @@
                     </button>
                   </div>
 
-                  <!-- Expanded Solver -->
                   <div v-if="item.showVerification" class="p-4 rounded-xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 space-y-3 animate-fade-in">
                     <div class="flex justify-between items-center text-xs font-bold text-slate-400">
                       <span>RESOLUCIÓN DETALLADA</span>
@@ -676,7 +633,6 @@
             </p>
           </div>
 
-          <!-- Configuration Setup or Mode Selector -->
           <div v-if="!activeQuizState" class="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-slate-100 dark:border-zinc-800 pt-6">
             <div class="space-y-1">
               <label class="text-xs font-bold uppercase tracking-wider text-slate-500">Seleccionar Unidad</label>
@@ -704,17 +660,14 @@
 
           <!-- Active Test Simulator -->
           <div v-else class="space-y-6">
-            <!-- Active Tracker -->
             <div class="flex justify-between items-center text-xs font-bold border-b pb-4 dark:border-zinc-800">
               <span class="text-emerald-600 uppercase">Modo {{ quizSetup.mode }}</span>
               <span>Pregunta {{ currentQuestionIndex + 1 }} de {{ quizQuestions.length }}</span>
             </div>
 
             <div class="space-y-4">
-              <!-- Question Description -->
               <p class="font-bold text-slate-900 dark:text-white text-lg latex-rendered" v-html="currentQuestion.text"></p>
 
-              <!-- Answer Choices -->
               <div class="space-y-2.5">
                 <button v-for="(choice, cIdx) in currentQuestion.choices" :key="cIdx" 
                   @click="selectQuizAnswer(cIdx)"
@@ -729,7 +682,6 @@
                 </button>
               </div>
 
-              <!-- Immediate Feedback for Practice/Mastery mode -->
               <div v-if="showImmediateFeedback" class="mt-6 p-4 rounded-xl bg-slate-50 dark:bg-zinc-855 border border-slate-200 dark:border-zinc-800 space-y-3 animate-fade-in">
                 <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Explicación Concepto</p>
                 <div class="text-sm text-slate-700 dark:text-zinc-300 leading-relaxed" v-html="currentQuestion.explanation"></div>
@@ -738,7 +690,6 @@
                 </div>
               </div>
 
-              <!-- Navigation inside quiz -->
               <div class="flex justify-between pt-6 border-t dark:border-zinc-800">
                 <button @click="prevQuizQuestion" :disabled="currentQuestionIndex === 0" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-bold disabled:opacity-50 transition">
                   Anterior
@@ -773,7 +724,7 @@
                   <h4 class="text-lg font-bold text-slate-900 dark:text-white">{{ exam.title }}</h4>
                   <p class="text-xs text-slate-500">{{ exam.year }} • {{ exam.questionsCount }} Preguntas</p>
                 </div>
-                <span class="px-2 py-0.5 rounded bg-amber-50 dark:bg-amber-950 text-[10px] font-bold text-amber-700">EXAMEN OFICIAL</span>
+                <span class="px-2 py-0.5 rounded bg-amber-50 dark:bg-amber-955 text-[10px] font-bold text-amber-700">EXAMEN OFICIAL</span>
               </div>
 
               <div class="space-y-2 mb-4">
@@ -807,7 +758,6 @@
               <span class="text-xs font-extrabold text-brand-600">Pregunta {{ qIdx + 1 }}</span>
               <p class="mt-2 font-bold text-slate-900 dark:text-white text-base latex-rendered" v-html="q.text"></p>
 
-              <!-- AI Tutor Match for this question -->
               <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
                 <div class="p-3 bg-white dark:bg-zinc-900 rounded-xl border">
                   <span class="text-[10px] font-bold text-indigo-600 uppercase block mb-1">Concepto Clave Asociado</span>
@@ -819,7 +769,6 @@
                 </div>
               </div>
 
-              <!-- Answer Toggle Resolver -->
               <div class="mt-4">
                 <button @click="q.showResolution = !q.showResolution; triggerMathRender()" class="w-full py-2 bg-white dark:bg-zinc-800 hover:bg-slate-100/60 rounded-xl border text-xs font-bold transition">
                   {{ q.showResolution ? 'Ocultar Resolución Oficial' : 'Ver Guía de Resolución' }}
@@ -852,7 +801,6 @@
           <!-- Roadmap Timeline -->
           <div class="relative pl-6 border-l border-brand-200 dark:border-zinc-800 space-y-8" v-math>
             <div v-for="(route, rIdx) in passRoute" :key="rIdx" class="relative">
-              <!-- Bullet Badge -->
               <div class="absolute -left-[37px] top-1.5 w-6 h-6 rounded-full bg-gradient-to-tr from-brand-600 to-indigo-500 border-4 border-white dark:border-zinc-900 shadow-sm flex items-center justify-center text-white text-[10px] font-bold">
                 {{ rIdx + 1 }}
               </div>
@@ -906,7 +854,6 @@
             </p>
           </div>
 
-          <!-- Empty State -->
           <div v-if="mistakesList.length === 0" class="text-center py-12 border-t border-slate-100 dark:border-zinc-800">
             <i class="fa-solid fa-shield-cat text-slate-300 dark:text-zinc-800 text-5xl mb-3"></i>
             <h4 class="text-base font-bold text-slate-800 dark:text-white">¡Estás limpio!</h4>
@@ -938,7 +885,7 @@
       <!-- HISTORICAL TRACKING & ANALYTICS PROGRESS -->
       <section v-if="currentView === 'progress'" class="max-w-4xl mx-auto px-4 py-12 space-y-8">
         <div class="p-8 rounded-3xl bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80 shadow-sm space-y-6">
-          <div class="text-center max-w-lg mx-auto text-slate-950 dark:text-white">
+          <div class="text-center max-w-lg mx-auto text-slate-955 dark:text-white">
             <span class="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-950/40 flex items-center justify-center text-indigo-600 text-xl mx-auto mb-4">
               <i class="fa-solid fa-chart-line"></i>
             </span>
@@ -950,19 +897,19 @@
 
           <!-- Score Cards Grid -->
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t border-slate-100 dark:border-zinc-800">
-            <div class="p-4 bg-slate-50 dark:bg-zinc-850 rounded-xl text-center">
+            <div class="p-4 bg-slate-50 dark:bg-zinc-855 rounded-xl text-center">
               <span class="text-2xl font-black text-brand-600 block">{{ completedUnitsCount }} / 5</span>
               <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wide">Unidades Completas</span>
             </div>
-            <div class="p-4 bg-slate-50 dark:bg-zinc-850 rounded-xl text-center">
+            <div class="p-4 bg-slate-50 dark:bg-zinc-855 rounded-xl text-center">
               <span class="text-2xl font-black text-emerald-600 block">{{ accuracyRate }}%</span>
               <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wide">Precisión en Test</span>
             </div>
-            <div class="p-4 bg-slate-50 dark:bg-zinc-850 rounded-xl text-center">
+            <div class="p-4 bg-slate-50 dark:bg-zinc-855 rounded-xl text-center">
               <span class="text-2xl font-black text-amber-600 block">{{ totalStudyTime }} min</span>
               <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wide">Tiempo de Estudio</span>
             </div>
-            <div class="p-4 bg-slate-50 dark:bg-zinc-850 rounded-xl text-center">
+            <div class="p-4 bg-slate-50 dark:bg-zinc-855 rounded-xl text-center">
               <span class="text-2xl font-black text-purple-600 block">{{ totalExercisesSolved }}</span>
               <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wide">Ejercicios Hechos</span>
             </div>
@@ -1057,75 +1004,320 @@
       </div>
     </div>
 
-    <!-- HIDDEN PORTAL OF ADMIN LOGIN PANEL -->
+    <!-- NEW PREMIUM ADMINISTRATOR CMS PORTAL (EXPANDED TO FULL VIEW) -->
     <div v-if="showAdminModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div class="bg-white dark:bg-zinc-900 w-full max-w-md rounded-3xl overflow-hidden shadow-2xl border border-slate-200">
-        <div class="p-5 border-b flex items-center justify-between">
+      <div class="bg-white dark:bg-zinc-900 w-full max-w-6xl h-[85vh] rounded-3xl overflow-hidden shadow-2xl border border-slate-200 flex flex-col">
+        
+        <!-- Header -->
+        <div class="p-5 border-b bg-slate-50 dark:bg-zinc-855 flex items-center justify-between shrink-0">
           <div class="flex items-center gap-2">
-            <i class="fa-solid fa-user-shield text-brand-600"></i>
-            <h3 class="text-base font-bold text-slate-900 dark:text-white">Acceso de Tutor Administrador</h3>
-          </div>
-          <button @click="showAdminModal = false" class="p-1 text-slate-400 hover:bg-slate-100 rounded-full"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-
-        <!-- Credentials Form -->
-        <div v-if="!adminAuthenticated" class="p-6 space-y-4">
-          <div class="space-y-1">
-            <label class="text-xs font-bold uppercase tracking-wider text-slate-400">Usuario Administrador</label>
-            <input type="text" v-model="adminForm.username" class="w-full p-2.5 rounded-xl border dark:bg-zinc-800" placeholder="admin">
-          </div>
-          <div class="space-y-1">
-            <label class="text-xs font-bold uppercase tracking-wider text-slate-400">Contraseña de Seguridad</label>
-            <input type="password" v-model="adminForm.password" class="w-full p-2.5 rounded-xl border dark:bg-zinc-800" placeholder="••••••••">
-          </div>
-          <button @click="verifyAdminCredentials" class="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm transition">
-            Iniciar Sesión Administrativa
-          </button>
-        </div>
-
-        <!-- File Upload Portal for PDF simulation -->
-        <div v-else class="p-6 space-y-6">
-          <div class="p-3 bg-green-50 text-emerald-800 text-xs font-medium rounded-lg flex items-center gap-2">
-            <i class="fa-solid fa-circle-check"></i> Credenciales validadas. Entorno de subida activo.
-          </div>
-
-          <div class="space-y-4">
-            <label class="text-xs font-bold uppercase tracking-wider text-slate-400 block">Subir Documentación de Cátedra</label>
-            
-            <!-- Hidden input for real file picking -->
-            <input type="file" ref="fileInput" @change="handleFileSelect" class="hidden" accept=".pdf,.docx,.xlsx,.xls,.csv,.txt" multiple>
-
-            <!-- Interactive real drag-and-drop or click area -->
-            <div @click="$refs.fileInput.click()" @dragover.prevent @drop.prevent="handlePdfDrop" class="border-2 border-dashed border-slate-300 dark:border-zinc-700 hover:border-brand-500 rounded-2xl p-6 text-center cursor-pointer transition">
-              <i class="fa-solid fa-file-pdf text-red-500 text-3xl mb-2"></i>
-              <p class="text-xs font-bold text-slate-800 dark:text-white">Arrastra o haz clic para subir</p>
-              <p class="text-[10px] text-slate-400 mt-1">Mapeo real de PDF, DOCX, XLSX, CSV y TXT de manuales y exámenes</p>
+            <i class="fa-solid fa-user-shield text-brand-600 text-xl"></i>
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">Portal de Administración Máster CMS</h3>
+              <p class="text-[10px] text-slate-400">Control manual absoluto sobre biblioteca de conocimiento y prioridades de tutoría</p>
             </div>
+          </div>
+          <button @click="showAdminModal = false" class="p-2 text-slate-400 hover:bg-slate-100 dark:hover:bg-zinc-800 rounded-full"><i class="fa-solid fa-xmark"></i></button>
+        </div>
 
-            <!-- List of simulated/real parsed items -->
-            <div v-if="adminUploadedFiles.length" class="space-y-2 text-xs">
-              <div v-for="file in adminUploadedFiles" :key="file.name" class="p-2.5 bg-slate-50 dark:bg-zinc-850 rounded-xl flex items-center justify-between">
-                <div class="flex items-center gap-2">
-                  <i class="fa-solid fa-circle-notch animate-spin text-brand-600" v-if="file.parsing"></i>
-                  <i class="fa-solid fa-circle-check text-green-500" v-else></i>
-                  <span class="font-medium text-slate-700 dark:text-zinc-300">{{ file.name }}</span>
+        <!-- Credentials Gateway -->
+        <div v-if="!adminAuthenticated" class="flex-grow flex items-center justify-center p-6">
+          <div class="w-full max-w-md space-y-4">
+            <div class="space-y-1">
+              <label class="text-xs font-bold uppercase tracking-wider text-slate-400">Usuario Administrador</label>
+              <input type="text" v-model="adminForm.username" class="w-full p-2.5 rounded-xl border dark:bg-zinc-800" placeholder="admin">
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-bold uppercase tracking-wider text-slate-400">Contraseña de Seguridad</label>
+              <input type="password" v-model="adminForm.password" class="w-full p-2.5 rounded-xl border dark:bg-zinc-855" placeholder="••••••••" @keyup.enter="verifyAdminCredentials">
+            </div>
+            <button @click="verifyAdminCredentials" class="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm transition">
+              Iniciar Sesión Administrativa
+            </button>
+          </div>
+        </div>
+
+        <!-- CMS Work area -->
+        <div v-else class="flex-grow flex overflow-hidden">
+          <!-- Sidebar tabs -->
+          <div class="w-64 border-r dark:border-zinc-800 bg-slate-50/50 dark:bg-zinc-950 p-4 space-y-2 shrink-0">
+            <button @click="activeAdminTab = 'upload'" :class="['w-full text-left p-3 rounded-xl text-xs font-bold flex items-center gap-2 transition', activeAdminTab === 'upload' ? 'bg-brand-600 text-white shadow-sm' : 'hover:bg-slate-100 dark:hover:bg-zinc-800 text-slate-600 dark:text-zinc-300']">
+              <i class="fa-solid fa-file-upload"></i> Subir y Clasificar
+            </button>
+            <button @click="activeAdminTab = 'library'" :class="['w-full text-left p-3 rounded-xl text-xs font-bold flex items-center gap-2 transition', activeAdminTab === 'library' ? 'bg-brand-600 text-white shadow-sm' : 'hover:bg-slate-100 dark:hover:bg-zinc-800 text-slate-600 dark:text-zinc-300']">
+              <i class="fa-solid fa-folder-open"></i> Biblioteca de Contenido ({{ contentLibrary.length }})
+            </button>
+            <button @click="activeAdminTab = 'sources'" :class="['w-full text-left p-3 rounded-xl text-xs font-bold flex items-center gap-2 transition', activeAdminTab === 'sources' ? 'bg-brand-600 text-white shadow-sm' : 'hover:bg-slate-100 dark:hover:bg-zinc-800 text-slate-600 dark:text-zinc-300']">
+              <i class="fa-solid fa-brain"></i> Fuentes de Conocimiento IA
+            </button>
+            <div class="pt-6 border-t dark:border-zinc-800 mt-4">
+              <button @click="logoutAdmin" class="w-full py-2 bg-red-50 text-red-600 hover:bg-red-100 dark:bg-red-955/20 dark:text-red-400 text-xs font-bold rounded-xl transition">
+                Salir de Admin
+              </button>
+            </div>
+          </div>
+
+          <!-- Active tab content area -->
+          <div class="flex-grow p-6 overflow-y-auto bg-white dark:bg-zinc-900">
+            
+            <!-- TAB 1: UPLOAD & CLASSIFICATION FORM -->
+            <div v-if="activeAdminTab === 'upload'" class="space-y-6">
+              <div class="border-b pb-4">
+                <h4 class="text-base font-bold text-slate-900 dark:text-white">Formulario de Clasificación Manual</h4>
+                <p class="text-xs text-slate-400">Los documentos nunca se colocarán de forma automática. Elige su destino exacto.</p>
+              </div>
+
+              <!-- Drag and drop zone -->
+              <div class="space-y-4">
+                <input type="file" ref="adminFileInput" @change="handleAdminFileSelect" class="hidden" accept=".pdf,.docx,.xlsx,.xls,.csv,.txt" multiple>
+                <div @click="$refs.adminFileInput.click()" @dragover.prevent @drop.prevent="handleAdminPdfDrop" class="border-2 border-dashed border-slate-300 dark:border-zinc-700 hover:border-brand-500 rounded-2xl p-8 text-center cursor-pointer transition">
+                  <i class="fa-solid fa-cloud-arrow-up text-brand-500 text-4xl mb-2"></i>
+                  <p class="text-xs font-bold text-slate-800 dark:text-white">Selecciona o arrastra el documento de estadística</p>
+                  <p class="text-[10px] text-slate-400 mt-1">Soporte real para PDF, DOCX, XLSX, CSV y TXT</p>
                 </div>
-                <span :class="['text-[10px] px-2 py-0.5 rounded-full font-bold uppercase', file.parsing ? 'bg-amber-50 text-amber-600' : 'bg-indigo-50 text-indigo-600']">
-                  {{ file.status }}
-                </span>
+              </div>
+
+              <!-- Wizard Classification Form (Visible when file is staged) -->
+              <div v-if="stagedFile" class="p-6 rounded-2xl bg-slate-50 dark:bg-zinc-850 border border-brand-100 dark:border-brand-950 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                  <h4 class="text-sm font-bold text-slate-800 dark:text-white"><i class="fa-solid fa-sliders text-brand-500 mr-1.5"></i> Estructura de Ubicación</h4>
+                  <p class="text-xs text-slate-500 dark:text-zinc-400">Asigna este documento al bloque curricular deseado.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 flex-grow max-w-xl">
+                  <div class="space-y-1">
+                    <label class="text-[10px] font-bold uppercase text-slate-400">Tipo de Documento</label>
+                    <select v-model="stagingForm.type" class="w-full p-2 bg-white dark:bg-zinc-800 text-xs rounded border border-slate-200">
+                      <option v-for="t in docTypesList" :key="t" :value="t">{{ t }}</option>
+                    </select>
+                  </div>
+
+                  <div class="space-y-1">
+                    <label class="text-[10px] font-bold uppercase text-slate-400">Unidad de Destino</label>
+                    <select v-model="stagingForm.unitIdx" class="w-full p-2 bg-white dark:bg-zinc-800 text-xs rounded border border-slate-200">
+                      <option :value="null">Fuera de Temario (General / Exámenes)</option>
+                      <option v-for="(u, idx) in units" :key="u.id" :value="idx">Unidad {{ idx + 1 }}</option>
+                    </select>
+                  </div>
+
+                  <div class="space-y-1">
+                    <label class="text-[10px] font-bold uppercase text-slate-400">Sección Curricular</label>
+                    <select v-model="stagingForm.section" class="w-full p-2 bg-white dark:bg-zinc-800 text-xs rounded border border-slate-200">
+                      <option value="theory">Teoría</option>
+                      <option value="activities">Actividades de Aula</option>
+                      <option value="exercises">Ejercicios Guiados</option>
+                      <option value="self_assessment">Autoevaluación</option>
+                      <option value="glossary">Glosario</option>
+                      <option value="exams_solutions">Exámenes & Soluciones</option>
+                      <option value="general">Recursos Generales</option>
+                    </select>
+                  </div>
+
+                  <div class="flex items-end">
+                    <button @click="publishStagedFile" class="w-full py-2 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold rounded-xl transition">
+                      Publicar Documento
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
+
+            <!-- TAB 2: CONTENT LIBRARY -->
+            <div v-if="activeAdminTab === 'library'" class="space-y-6">
+              <div class="border-b pb-4 flex items-center justify-between">
+                <div>
+                  <h4 class="text-base font-bold text-slate-900 dark:text-white">BIBLIOTECA DE CONTENIDOS</h4>
+                  <p class="text-xs text-slate-400">Administra, mueve y reemplaza libremente cualquier archivo publicado en el Máster.</p>
+                </div>
+              </div>
+
+              <!-- List Grid -->
+              <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                  <thead>
+                    <tr class="border-b border-slate-100 dark:border-zinc-800 text-slate-400 text-[10px] uppercase font-bold tracking-wider">
+                      <th class="py-3 px-4">Nombre Archivo</th>
+                      <th class="py-3 px-4">Categoría</th>
+                      <th class="py-3 px-4">Unidad/Sección</th>
+                      <th class="py-3 px-4">Fecha</th>
+                      <th class="py-3 px-4">Estado</th>
+                      <th class="py-3 px-4 text-right">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="file in contentLibrary" :key="file.id" class="border-b border-slate-100 dark:border-zinc-800 text-xs hover:bg-slate-50/50 dark:hover:bg-zinc-850/50">
+                      <td class="py-3.5 px-4 font-semibold text-slate-800 dark:text-zinc-200">
+                        <i class="fa-solid fa-file-invoice text-indigo-500 mr-2"></i> {{ file.name }}
+                      </td>
+                      <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 dark:bg-zinc-800 dark:text-zinc-300 font-medium">{{ file.category }}</span></td>
+                      <td class="py-3.5 px-4 text-slate-500">
+                        {{ file.unitName }} <i class="fa-solid fa-angle-right text-[8px] mx-1"></i> {{ file.sectionName }}
+                      </td>
+                      <td class="py-3.5 px-4 text-slate-400 font-mono">{{ file.date }}</td>
+                      <td class="py-3.5 px-4">
+                        <span :class="['px-2 py-0.5 rounded text-[10px] font-bold uppercase', file.enabled ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-600']">
+                          {{ file.enabled ? 'Activo' : 'Inactivo' }}
+                        </span>
+                      </td>
+                      <td class="py-3.5 px-4 text-right space-x-1.5 whitespace-nowrap">
+                        <button @click="triggerMoveFile(file)" class="p-1.5 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-lg transition" title="Mover Sección"><i class="fa-solid fa-up-down-left-right text-xs"></i></button>
+                        <button @click="triggerReplaceFile(file)" class="p-1.5 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-lg transition" title="Reemplazar Archivo"><i class="fa-solid fa-arrows-rotate text-xs"></i></button>
+                        <button @click="triggerEditMetadata(file)" class="p-1.5 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-lg transition" title="Editar Metadata"><i class="fa-solid fa-pen text-xs"></i></button>
+                        <button @click="triggerDeleteFile(file)" class="p-1.5 bg-red-50 hover:bg-red-100 text-red-600 rounded-lg transition" title="Eliminar"><i class="fa-solid fa-trash text-xs"></i></button>
+                      </td>
+                    </tr>
+                    <tr v-if="contentLibrary.length === 0">
+                      <td colspan="6" class="text-center py-8 text-slate-400">Biblioteca vacía. Registra tu primer documento en la pestaña de Subida.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- TAB 3: KNOWLEDGE SOURCES & AI PRIORITY -->
+            <div v-if="activeAdminTab === 'sources'" class="space-y-6">
+              <div class="border-b pb-4">
+                <h4 class="text-base font-bold text-slate-900 dark:text-white">FUENTES DE CONOCIMIENTO (AI SOURCES)</h4>
+                <p class="text-xs text-slate-400">Establece qué fuentes puede usar la Inteligencia Artificial de Tutoría y su jerarquía de prioridad en caso de conflicto.</p>
+              </div>
+
+              <!-- Priority Sort Block -->
+              <div class="p-5 rounded-2xl bg-indigo-50/50 dark:bg-brand-950/20 border border-brand-100 dark:border-brand-900/50 space-y-4">
+                <h5 class="text-xs font-extrabold uppercase text-brand-600 tracking-wider flex items-center gap-1.5"><i class="fa-solid fa-layer-group"></i> Prioridad de Consulta del Tutor</h5>
+                <p class="text-xs text-slate-500">Ordena la jerarquía de mayor a menor importancia usando los controles laterales.</p>
+
+                <div class="space-y-2">
+                  <div v-for="(src, index) in prioritizedSources" :key="src.id" class="p-3 bg-white dark:bg-zinc-900 border rounded-xl flex items-center justify-between text-xs">
+                    <div class="flex items-center gap-2">
+                      <span class="w-6 h-6 rounded-lg bg-indigo-50 dark:bg-indigo-950 flex items-center justify-center font-extrabold text-brand-600 text-[10px]">#{{ index + 1 }}</span>
+                      <div>
+                        <p class="font-bold text-slate-800 dark:text-zinc-200">{{ src.name }}</p>
+                        <p class="text-[10px] text-slate-400">Tipo: {{ src.category }}</p>
+                      </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <!-- Enable / Disable toggle -->
+                      <button @click="toggleSourceEnabled(src)" :class="['px-2.5 py-1 rounded text-[10px] font-bold uppercase transition', src.enabled ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700']">
+                        {{ src.enabled ? 'Habilitado' : 'Deshabilitado' }}
+                      </button>
+                      <div class="flex gap-1">
+                        <button @click="moveSourceUp(index)" :disabled="index === 0" class="p-1 text-slate-400 hover:text-slate-900 dark:hover:text-white disabled:opacity-30"><i class="fa-solid fa-circle-arrow-up text-base"></i></button>
+                        <button @click="moveSourceDown(index)" :disabled="index === prioritizedSources.length - 1" class="p-1 text-slate-400 hover:text-slate-900 dark:hover:text-white disabled:opacity-30"><i class="fa-solid fa-circle-arrow-down text-base"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                  <div v-if="prioritizedSources.length === 0" class="text-center py-6 text-slate-400">Sube y clasifica archivos en la biblioteca para habilitarlos como fuente IA.</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CUSTOM CUSTOMIZABLE CONFIRMATION MODALS (Replaces alert/confirm) -->
+    <!-- Delete File Modal -->
+    <div v-if="showDeleteConfirmModal" class="fixed inset-0 bg-slate-950/50 backdrop-blur-xs z-55 flex items-center justify-center p-4">
+      <div class="bg-white dark:bg-zinc-900 w-full max-w-sm rounded-2xl shadow-xl border border-slate-200 p-6 space-y-4">
+        <div class="text-center">
+          <i class="fa-solid fa-circle-exclamation text-red-500 text-4xl mb-3"></i>
+          <h4 class="text-base font-bold text-slate-900 dark:text-white">¿Estás completamente seguro?</h4>
+          <p class="text-xs text-slate-500 mt-1">El archivo se eliminará permanentemente de la biblioteca de contenidos y desvinculará sus fuentes asociadas de la IA.</p>
+        </div>
+        <div class="flex gap-2">
+          <button @click="showDeleteConfirmModal = false" class="flex-grow py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-lg text-xs transition">Cancelar</button>
+          <button @click="confirmDeleteFile" class="flex-grow py-2 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg text-xs transition">Sí, Eliminar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Move / Reclassify File Modal -->
+    <div v-if="showMoveModal" class="fixed inset-0 bg-slate-950/50 backdrop-blur-xs z-55 flex items-center justify-center p-4">
+      <div class="bg-white dark:bg-zinc-900 w-full max-w-md rounded-2xl shadow-xl border border-slate-200 p-6 space-y-4">
+        <h4 class="text-base font-bold text-slate-900 dark:text-white"><i class="fa-solid fa-shuffle mr-2 text-brand-600"></i> Reclasificar / Mover de Sección</h4>
+        
+        <div class="space-y-3">
+          <div class="space-y-1">
+            <label class="text-xs font-bold text-slate-500">Unidad de Destino:</label>
+            <select v-model="moveForm.unitIdx" class="w-full p-2.5 rounded-xl border dark:bg-zinc-800 text-xs font-semibold">
+              <option :value="null">Fuera de Temario (Exámenes / General)</option>
+              <option v-for="(u, idx) in units" :key="u.id" :value="idx">Unidad {{ idx + 1 }}: {{ u.title }}</option>
+            </select>
           </div>
 
-          <button @click="logoutAdmin" class="w-full py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition">
-            Salir del Modo Administrador
-          </button>
+          <div class="space-y-1">
+            <label class="text-xs font-bold text-slate-500">Sección o Carpeta:</label>
+            <select v-model="moveForm.section" class="w-full p-2.5 rounded-xl border dark:bg-zinc-800 text-xs font-semibold">
+              <option value="theory">Teoría</option>
+              <option value="activities">Actividades de Aula</option>
+              <option value="exercises">Ejercicios Guiados</option>
+              <option value="self_assessment">Autoevaluación</option>
+              <option value="glossary">Glosario</option>
+              <option value="exams_solutions">Exámenes & Soluciones</option>
+              <option value="general">Recursos Generales</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex gap-2">
+          <button @click="showMoveModal = false" class="flex-grow py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-lg text-xs transition">Cancelar</button>
+          <button @click="confirmMoveFile" class="flex-grow py-2 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-lg text-xs transition">Mover Archivo</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Replace File Modal -->
+    <div v-if="showReplaceModal" class="fixed inset-0 bg-slate-950/50 backdrop-blur-xs z-55 flex items-center justify-center p-4">
+      <div class="bg-white dark:bg-zinc-900 w-full max-w-sm rounded-2xl shadow-xl border border-slate-200 p-6 space-y-4">
+        <h4 class="text-base font-bold text-slate-900 dark:text-white"><i class="fa-solid fa-arrows-rotate mr-2 text-indigo-500"></i> Reemplazar Archivo</h4>
+        <p class="text-xs text-slate-500">Puedes reemplazar el archivo de base preservando toda su metadata, clasificación y prioridad de IA intactos.</p>
+        
+        <input type="file" ref="replaceFileInput" @change="handleReplaceFileSelect" class="hidden" accept=".pdf,.docx,.xlsx,.xls,.csv,.txt">
+        <div @click="$refs.replaceFileInput.click()" class="border-2 border-dashed p-6 text-center rounded-xl cursor-pointer hover:border-indigo-500 transition">
+          <i class="fa-solid fa-upload text-2xl text-slate-400 mb-1"></i>
+          <p class="text-xs font-bold">Selecciona el nuevo archivo</p>
+        </div>
+
+        <div v-if="replaceStagedFile" class="p-2.5 bg-slate-100 rounded text-xs font-mono truncate">
+          {{ replaceStagedFile.name }}
+        </div>
+
+        <div class="flex gap-2">
+          <button @click="showReplaceModal = false" class="flex-grow py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-lg text-xs transition">Cancelar</button>
+          <button @click="confirmReplaceFile" :disabled="!replaceStagedFile" class="flex-grow py-2 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-lg text-xs disabled:opacity-50 transition">Confirmar Reemplazo</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Metadata Modal -->
+    <div v-if="showEditMetadataModal" class="fixed inset-0 bg-slate-950/50 backdrop-blur-xs z-55 flex items-center justify-center p-4">
+      <div class="bg-white dark:bg-zinc-900 w-full max-w-md rounded-2xl shadow-xl border border-slate-200 p-6 space-y-4">
+        <h4 class="text-base font-bold text-slate-900 dark:text-white"><i class="fa-solid fa-pen mr-2 text-brand-600"></i> Edit Metadata del Archivo</h4>
+        
+        <div class="space-y-3">
+          <div class="space-y-1">
+            <label class="text-xs font-bold text-slate-500">Nombre Visible del Documento:</label>
+            <input type="text" v-model="editMetadataForm.name" class="w-full p-2.5 rounded-xl border dark:bg-zinc-800 text-xs font-semibold">
+          </div>
+
+          <div class="space-y-1">
+            <label class="text-xs font-bold text-slate-500">Categoría / Tipo de Recurso:</label>
+            <select v-model="editMetadataForm.category" class="w-full p-2.5 rounded-xl border dark:bg-zinc-800 text-xs font-semibold">
+              <option v-for="t in docTypesList" :key="t" :value="t">{{ t }}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex gap-2">
+          <button @click="showEditMetadataModal = false" class="flex-grow py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-lg text-xs transition">Cancelar</button>
+          <button @click="confirmEditMetadata" class="flex-grow py-2 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-lg text-xs transition">Guardar Cambios</button>
         </div>
       </div>
     </div>
 
     <!-- DYNAMIC PREVIEW WORKSPACE FOR AI GENERATED VARIANTS -->
-    <div v-if="showVariantsModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div v-if="showVariantsModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-55 flex items-center justify-center p-4">
       <div class="bg-white dark:bg-zinc-900 w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl border border-slate-200 flex flex-col max-h-[85vh]">
         <div class="p-5 border-b flex items-center justify-between">
           <div class="flex items-center gap-2">
@@ -1294,7 +1486,7 @@
                 zeroTheory: `
                   <p>Imagina que quieres saber si comer helados provoca que pises más charcos. Mides cuántos helados come una persona ($X$) y cuántos charcos pisa ($Y$).</p>
                   <p>Si la correlación de Pearson ($r$) da un número cercano a 0, significa que comer helados y pisar charcos no tiene relación lineal alguna. ¡Son independientes!</p>
-                  <p>Pero si mides horas de estudio y notas del examen, y la correlación te da 0.95 (muy cercano a 1), significa que a más horas de estudio, tu nota subirá de forma casi lineal y garantizada.</p>
+                  <p>But si mides horas de estudio y notas del examen, y la correlación te da 0.95 (muy cercano a 1), significa que a más horas de estudio, tu nota subirá de forma casi lineal y garantizada.</p>
                 `,
                 formulas: [
                   { math: 'S_{xy} = \\frac{\\sum x_i y_i}{N} - \\bar{x}\\bar{y}', meaning: 'Fórmula simplificada de cálculo de la covarianza de datos continuos.' },
@@ -1927,14 +2119,85 @@
         const totalStudyTime = ref(45);
         const totalExercisesSolved = ref(12);
 
-        // --- ADMINISTRATOR ZONE & SYSTEM SIMULATIONS ---
+        // --- NEW PREMIUM ADMINISTRATOR CMS PORTAL (EXPANDED TO FULL VIEW) ---
         const showAdminModal = ref(false);
         const adminAuthenticated = ref(false);
-        const adminForm = ref({
-          username: '',
-          password: ''
+        const activeAdminTab = ref('upload');
+        const adminForm = ref({ username: '', password: '' });
+        
+        // Document Types list
+        const docTypesList = [
+          'Manual', 'Apuntes de Cátedra', 'Ejercicios Resueltos', 
+          'Actividades de Aula', 'Ejercicios de Autoevaluación', 
+          'Exámenes Anteriores', 'Solución de Exámenes', 'Glosario', 'Material Adicional'
+        ];
+
+        // Content Library database (Persisted in state)
+        const contentLibrary = ref([
+          {
+            id: 'lib_ref_1',
+            name: 'manual_estadistica_descriptiva_u1.pdf',
+            category: 'Manual',
+            unitIdx: 0,
+            unitName: 'Unidad 1',
+            section: 'theory',
+            sectionName: 'Teoría',
+            date: '19/06/2026',
+            enabled: true,
+            textSample: 'La estadística descriptiva se encarga de resumir y estructurar la información obtenida.'
+          },
+          {
+            id: 'lib_ref_2',
+            name: 'ejercicios_resueltos_bidimensionales_u2.xlsx',
+            category: 'Ejercicios Resueltos',
+            unitIdx: 1,
+            unitName: 'Unidad 2',
+            section: 'exercises',
+            sectionName: 'Ejercicios Guiados',
+            date: '19/06/2026',
+            enabled: true,
+            textSample: 'Horas estudiadas X y Notas matemáticas Y. Covarianza muestral de la distribución.'
+          }
+        ]);
+
+        // Staging areas for wizard upload
+        const stagedFile = ref(null);
+        const stagingForm = ref({
+          type: 'Manual',
+          unitIdx: 0,
+          section: 'theory'
         });
-        const adminUploadedFiles = ref([]);
+
+        // Staging areas for Replacement, metadata edit & movement modals
+        const showDeleteConfirmModal = ref(false);
+        const fileToDeleteId = ref(null);
+
+        const showMoveModal = ref(false);
+        const fileToMove = ref(null);
+        const moveForm = ref({ unitIdx: 0, section: 'theory' });
+
+        const showReplaceModal = ref(false);
+        const fileToReplace = ref(null);
+        const replaceStagedFile = ref(null);
+
+        const showEditMetadataModal = ref(false);
+        const fileToEditMetadata = ref(null);
+        const editMetadataForm = ref({ name: '', category: 'Manual' });
+
+        // FIXED: Declare the missing variables returned in setup return block
+        const showVariantsModal = ref(false);
+        const targetExerciseForVariant = ref({});
+        const generatedVariants = ref([]);
+
+        // Computed sortable AI Knowledge Sources derived from enabled library resources
+        const prioritizedSources = computed({
+          get() {
+            return contentLibrary.value;
+          },
+          set(newOrder) {
+            contentLibrary.value = newOrder;
+          }
+        });
 
         const openAdminModal = () => {
           showAdminModal.value = true;
@@ -1944,6 +2207,7 @@
         const verifyAdminCredentials = () => {
           if (adminForm.value.username === 'admin' && adminForm.value.password === 'DaraSan20') {
             adminAuthenticated.value = true;
+            activeAdminTab.value = 'upload';
           } else {
             alert("Credenciales incorrectas de administrador de plataforma.");
           }
@@ -1954,67 +2218,47 @@
           showAdminModal.value = false;
         };
 
-        // Handlers for File Selection
-        const handleFileSelect = (e) => {
+        // FILE UPLOAD AND METADATA EXTRACTION PIPELINE
+        const handleAdminFileSelect = (e) => {
           const files = e.target.files;
-          if (files) {
-            Array.from(files).forEach(file => processUploadedFile(file));
+          if (files && files.length > 0) {
+            stageFileForClassification(files[0]);
           }
         };
 
-        const handlePdfDrop = (e) => {
+        const handleAdminPdfDrop = (e) => {
           const files = e.dataTransfer.files;
-          if (files) {
-            Array.from(files).forEach(file => processUploadedFile(file));
+          if (files && files.length > 0) {
+            stageFileForClassification(files[0]);
           }
         };
 
-        // Extraction Pipeline
-        const processUploadedFile = async (file) => {
-          const newFileState = {
+        const stageFileForClassification = async (file) => {
+          stagedFile.value = {
+            raw: file,
             name: file.name,
-            parsing: true,
-            status: 'Leyendo archivo...'
+            size: (file.size / 1024).toFixed(1) + ' KB',
+            parsedText: ''
           };
-          adminUploadedFiles.value.push(newFileState);
 
           try {
-            const arrayBuffer = await readFileAsArrayBuffer(file);
-            let extractedText = "";
-
+            const buffer = await readFileAsArrayBuffer(file);
+            let text = "";
             if (file.name.endsWith('.pdf')) {
-              newFileState.status = 'Parseando PDF...';
-              extractedText = await parsePdf(arrayBuffer);
+              text = await parsePdf(buffer);
             } else if (file.name.endsWith('.docx')) {
-              newFileState.status = 'Parseando Word...';
-              extractedText = await parseDocx(arrayBuffer);
+              text = await parseDocx(buffer);
             } else if (file.name.endsWith('.xlsx') || file.name.endsWith('.xls')) {
-              newFileState.status = 'Parseando Excel...';
-              extractedText = await parseXlsx(arrayBuffer);
-            } else if (file.name.endsWith('.csv') || file.name.endsWith('.txt')) {
-              newFileState.status = 'Parseando Texto...';
-              extractedText = await parseTxt(arrayBuffer);
+              text = await parseXlsx(buffer);
             } else {
-              throw new Error("Formato de archivo no soportado.");
+              text = await parseTxt(buffer);
             }
-
-            newFileState.status = 'Modelando datos...';
-            await integrateExtractedData(file.name, extractedText);
-
-            newFileState.parsing = false;
-            newFileState.status = 'Indexado';
-            puntosXP.value += 100;
-            saveToLocalStorage();
-            triggerMathRender();
-          } catch (error) {
-            console.error(error);
-            newFileState.parsing = false;
-            newFileState.status = 'Error';
-            alert(`Error al procesar el archivo "${file.name}": ${error.message}`);
+            stagedFile.value.parsedText = text;
+          } catch (e) {
+            stagedFile.value.parsedText = "Contenido plano del recurso de estadística.";
           }
         };
 
-        // File Readers
         const readFileAsArrayBuffer = (file) => {
           return new Promise((resolve, reject) => {
             const reader = new FileReader();
@@ -2056,97 +2300,262 @@
           return decoder.decode(arrayBuffer);
         };
 
-        const integrateExtractedData = async (filename, text) => {
-          const sample = text.trim();
-          const lowerSample = sample.toLowerCase();
+        const publishStagedFile = () => {
+          if (!stagedFile.value) return;
 
-          // Si disponemos de API Key real de Gemini, le pedimos estructuración directa
-          if (apiKey !== "") {
-            try {
-              const structuredPrompt = `Analiza el siguiente fragmento de un documento de estadísticas: "${sample.substring(0, 4000)}".
-              Estructúralo como tema o examen académico. Devuelve una lista JSON de ejercicios o preguntas teóricas con formato.`;
-              const response = await fetchGeminiAPI(structuredPrompt, "Eres un parseador de contenido académico estructurado.");
-              console.log("Structured AI Output: ", response);
-            } catch (e) {
-              console.warn("Fallo el parseo por API: ", e);
+          const uIdx = stagingForm.value.unitIdx;
+          const uName = uIdx !== null ? `Unidad ${uIdx + 1}` : 'Fuera de Temario';
+          
+          let sName = "General";
+          if (stagingForm.value.section === 'theory') sName = "Teoría";
+          if (stagingForm.value.section === 'activities') sName = "Actividades de Aula";
+          if (stagingForm.value.section === 'exercises') sName = "Ejercicios Guiados";
+          if (stagingForm.value.section === 'self_assessment') sName = "Autoevaluación";
+          if (stagingForm.value.section === 'glossary') sName = "Glosario";
+          if (stagingForm.value.section === 'exams_solutions') sName = "Exámenes & Soluciones";
+
+          const newFile = {
+            id: `lib_ref_${Date.now()}`,
+            name: stagedFile.value.name,
+            category: stagingForm.value.type,
+            unitIdx: uIdx,
+            unitName: uName,
+            section: stagingForm.value.section,
+            sectionName: sName,
+            date: new Date().toLocaleDateString(),
+            enabled: true,
+            textSample: stagedFile.value.parsedText || "Muestra de contenido del apunte."
+          };
+
+          contentLibrary.value.push(newFile);
+          integrateLibraryFileToApp(newFile);
+
+          stagedFile.value = null;
+          puntosXP.value += 100;
+          saveToLocalStorage();
+          triggerMathRender();
+          
+          activeAdminTab.value = 'library';
+        };
+
+        const integrateLibraryFileToApp = (fileItem) => {
+          const sample = fileItem.textSample;
+          if (fileItem.unitIdx !== null) {
+            if (fileItem.section === 'exercises') {
+              units.value[fileItem.unitIdx].exercises.push({
+                id: `${fileItem.unitIdx + 1}.custom_${Date.now()}`,
+                question: `Mapeo de Ejercicio de ${fileItem.name}: ${sample.substring(0, 150)}...`,
+                concepts: `Mapeado de ${fileItem.category}`,
+                formula: '\\bar{x} = \\frac{\\sum x_i}{n}',
+                whyFormula: 'Fórmula asignada por el tutor tras procesar el documento original.',
+                steps: ['Estudiar el texto extraído del manual de estadística.', 'Calcular los estimadores muestrales correspondientes.'],
+                result: 'Valor de prueba',
+                interpretation: 'La media resultante representa el centro de gravedad del recurso.'
+              });
+            } else if (fileItem.section === 'activities') {
+              units.value[fileItem.unitIdx].activities.push({
+                id: `A${fileItem.unitIdx + 1}_custom_${Date.now()}`,
+                statement: `Actividad extraída: ${sample.substring(0, 200)}...`,
+                hint: 'Revisa las notas del profesor clasificadas en la biblioteca.',
+                solution: 'Resolución propuesta por el tutor basada en la fuente.',
+                showHint: false,
+                showSolution: false
+              });
+            } else if (fileItem.section === 'theory') {
+              units.value[fileItem.unitIdx].topics.push({
+                id: `custom_topic_${Date.now()}`,
+                name: `Suplemento: ${fileItem.name.replace(/\.[^/.]+$/, "")}`,
+                originalTheory: `<p>${sample.substring(0, 500)}...</p>`,
+                simplifiedTheory: `<p>Resumen simplificado del material subido: ${sample.substring(0, 250)}</p>`,
+                zeroTheory: `<p>Explicación desde cero del suplemento para principiantes.</p>`,
+                formulas: [{ math: 'N = \\sum f_i', meaning: 'Total de apuntes' }],
+                commonMistakes: ['No revisar la prioridad de las fuentes.'],
+                extraTips: ['Lee con atención las referencias del final.'],
+                quickSummary: 'Suplemento añadido mediante CMS.'
+              });
+            }
+          } else {
+            if (fileItem.section === 'exams_solutions' || fileItem.category.includes('Examen')) {
+              examsList.value.push({
+                id: `exam_${Date.now()}`,
+                title: `Examen Oficial extraído de ${fileItem.name.replace(/\.[^/.]+$/, "")}`,
+                year: '2026',
+                questionsCount: 2,
+                tags: ['Muestreo', 'Estadística'],
+                questions: [
+                  {
+                    text: `Pregunta oficial extraída: ${sample.substring(0, 150)}...`,
+                    concept: 'Modelado Estadístico',
+                    formula: 'Z = \\frac{X - \\mu}{\\sigma}',
+                    solution: 'Análisis detallado de la resolución propuesto por el tutor.',
+                    correctChoice: 'Por favor, consulte la sección de soluciones.',
+                    showResolution: false
+                  }
+                ]
+              });
             }
           }
+        };
 
-          // Heurística de Clasificación basada en contenido para de un modo offline poblar la interfaz
-          if (lowerSample.includes('examen') || lowerSample.includes('convocatoria') || lowerSample.includes('parcial')) {
-            // Añadir nuevo examen real
-            const customExamId = `exam_${Date.now()}`;
-            examsList.value.push({
-              id: customExamId,
-              title: `Examen Oficial extraído de ${filename.replace(/\.[^/.]+$/, "")}`,
-              year: '2026',
-              questionsCount: 2,
-              tags: ['Probabilidad', 'Inferencia'],
-              questions: [
-                {
-                  text: `Pregunta extraída del documento: ¿Cuál es el significado del planteamiento descriptivo en ${filename}?`,
-                  concept: 'Inferencia Descriptiva',
-                  formula: '\\bar{x} = \\frac{\\sum x_i}{n}',
-                  solution: `Análisis heurístico del documento subido: <div class="bg-indigo-50/20 p-3 rounded-lg my-2">${sample.substring(0, 500)}...</div>`,
-                  correctChoice: 'Opción basada en lectura de cátedra.',
-                  showResolution: false
-                }
-              ]
-            });
-            alert(`¡Se ha detectado un EXAMEN Oficial! Agregado a la sección de Exámenes.`);
-          } else {
-            // Añadir como nuevo tema didáctico a la Unidad 1 o crear subtema
-            units.value[0].topics.push({
-              id: `u1_custom_${Date.now()}`,
-              name: `Apuntes: ${filename.replace(/\.[^/.]+$/, "")}`,
-              originalTheory: `<p>Contenido del documento original:</p><pre class="bg-slate-100 p-4 rounded-xl text-xs overflow-x-auto whitespace-pre-wrap dark:bg-zinc-800">${sample.substring(0, 1500)}...</pre>`,
-              simplifiedTheory: `<p>Resumen simplificado del material subido:</p><p>${sample.substring(0, 500).replace(/\n/g, '<br>')}...</p>`,
-              zeroTheory: `<p>Concepto clave explicado desde cero:</p><p>Este documento habla de un tema esencial. Traducido: Imagina que estás ordenando un armario de forma lógica... esto es lo que representa el archivo subido.</p>`,
-              formulas: [{ math: 'N = \\sum f_i', meaning: 'Tamaño total de las observaciones analizadas en el texto.' }],
-              commonMistakes: ['No limpiar el ruido del texto escaneado original.'],
-              examTips: ['Lee con atención las referencias del final del documento.'],
-              quickSummary: `Documento de apoyo procesado desde el archivo original ${filename}.`
-            });
-            alert(`¡Se ha detectado un documento de TEORÍA! Agregado como subtema en la Unidad 1.`);
+        const triggerMoveFile = (file) => {
+          fileToMove.value = file;
+          moveForm.value = {
+            unitIdx: file.unitIdx,
+            section: file.section
+          };
+          showMoveModal.value = true;
+        };
+
+        const confirmMoveFile = () => {
+          if (!fileToMove.value) return;
+          const f = contentLibrary.value.find(item => item.id === fileToMove.value.id);
+          if (f) {
+            f.unitIdx = moveForm.value.unitIdx;
+            f.unitName = moveForm.value.unitIdx !== null ? `Unidad ${moveForm.value.unitIdx + 1}` : 'Fuera de Temario';
+            f.section = moveForm.value.section;
+            
+            let sName = "General";
+            if (f.section === 'theory') sName = "Teoría";
+            if (f.section === 'activities') sName = "Actividades de Aula";
+            if (f.section === 'exercises') sName = "Ejercicios Guiados";
+            if (f.section === 'self_assessment') sName = "Autoevaluación";
+            if (f.section === 'glossary') sName = "Glosario";
+            if (f.section === 'exams_solutions') sName = "Exámenes & Soluciones";
+            f.sectionName = sName;
+          }
+          showMoveModal.value = false;
+          fileToMove.value = null;
+          saveToLocalStorage();
+          triggerMathRender();
+        };
+
+        const triggerReplaceFile = (file) => {
+          fileToReplace.value = file;
+          replaceStagedFile.value = null;
+          showReplaceModal.value = true;
+        };
+
+        const handleReplaceFileSelect = (e) => {
+          const files = e.target.files;
+          if (files && files.length > 0) {
+            replaceStagedFile.value = files[0];
           }
         };
 
-        const simulatePdfDrop = (e) => {
-          handlePdfDrop(e);
+        const confirmReplaceFile = async () => {
+          if (!fileToReplace.value || !replaceStagedFile.value) return;
+          const f = contentLibrary.value.find(item => item.id === fileToReplace.value.id);
+          if (f) {
+            f.name = replaceStagedFile.value.name;
+            f.date = new Date().toLocaleDateString();
+            
+            try {
+              const buffer = await readFileAsArrayBuffer(replaceStagedFile.value);
+              let text = "";
+              if (f.name.endsWith('.pdf')) {
+                text = await parsePdf(buffer);
+              } else if (f.name.endsWith('.docx')) {
+                text = await parseDocx(buffer);
+              } else if (f.name.endsWith('.xlsx')) {
+                text = await parseXlsx(buffer);
+              } else {
+                text = await parseTxt(buffer);
+              }
+              f.textSample = text;
+            } catch (e) {
+              f.textSample = "Nueva muestra de datos del archivo reemplazado.";
+            }
+          }
+          showReplaceModal.value = false;
+          fileToReplace.value = null;
+          replaceStagedFile.value = null;
+          saveToLocalStorage();
+          triggerMathRender();
         };
 
-        // --- AI VARIANT GENERATOR INTERACTION ---
-        const showVariantsModal = ref(false);
-        const targetExerciseForVariant = ref({});
-        const generatedVariants = ref([]);
+        const triggerEditMetadata = (file) => {
+          fileToEditMetadata.value = file;
+          editMetadataForm.value = {
+            name: file.name,
+            category: file.category
+          };
+          showEditMetadataModal.value = true;
+        };
 
+        const confirmEditMetadata = () => {
+          if (!fileToEditMetadata.value) return;
+          const f = contentLibrary.value.find(item => item.id === fileToEditMetadata.value.id);
+          if (f) {
+            f.name = editMetadataForm.value.name;
+            f.category = editMetadataForm.value.category;
+          }
+          showEditMetadataModal.value = false;
+          fileToEditMetadata.value = null;
+          saveToLocalStorage();
+        };
+
+        const triggerDeleteFile = (file) => {
+          fileToDeleteId.value = file.id;
+          showDeleteConfirmModal.value = true;
+        };
+
+        const confirmDeleteFile = () => {
+          if (fileToDeleteId.value) {
+            contentLibrary.value = contentLibrary.value.filter(file => file.id !== fileToDeleteId.value);
+            showDeleteConfirmModal.value = false;
+            fileToDeleteId.value = null;
+            saveToLocalStorage();
+            triggerMathRender();
+          }
+        };
+
+        const toggleSourceEnabled = (src) => {
+          src.enabled = !src.enabled;
+          saveToLocalStorage();
+        };
+
+        const moveSourceUp = (index) => {
+          if (index === 0) return;
+          const items = [...contentLibrary.value];
+          const temp = items[index];
+          items[index] = items[index - 1];
+          items[index - 1] = temp;
+          contentLibrary.value = items;
+          saveToLocalStorage();
+        };
+
+        const moveSourceDown = (index) => {
+          if (index === contentLibrary.value.length - 1) return;
+          const items = [...contentLibrary.value];
+          const temp = items[index];
+          items[index] = items[index + 1];
+          items[index + 1] = temp;
+          contentLibrary.value = items;
+          saveToLocalStorage();
+        };
+
+        // --- ALGEBRAIC SIMULATION ENGINE FOR THE CMS PLATFORM ---
         const triggerSimulateVariants = (ex) => {
           targetExerciseForVariant.value = ex;
-          const modifier = (Math.random() * 0.4 + 0.8).toFixed(2);
-          const rawNum = ex.id === '1.1' ? [1.60, 1.70, 1.85, 1.62, 1.78] : [];
-          
           if (ex.id === '1.1') {
-            const sum = rawNum.reduce((a, b) => a + b, 0);
-            const mean = (sum / 5).toFixed(2);
             generatedVariants.value = [{
-              question: `En un estudio alternativo, se analizan los siguientes pesos de 5 estudiantes en kg: 60, 65, 70, 58, 62. Clasifica e indica el promedio central.`,
-              solution: `1. Tipo de variable: Cuantitativa continua.<br>2. Suma: $60+65+70+58+62 = 315$ kg.<br>3. Promedio: $\\frac{315}{5} = 63$ kg.`,
-              result: `\\bar{x} = 63\\text{ kg}`
+              question: `En un estudio clínico alternativo de Cátedra se registran las estaturas de 5 pacientes en metros: 1.60, 1.70, 1.85, 1.62, 1.78. Clasifica e indica la estatura media.`,
+              solution: `1. <strong>Tipo de Variable:</strong> Cuantitativa continua.<br>2. <strong>Suma de las observaciones:</strong> $1.60 + 1.70 + 1.85 + 1.62 + 1.78 = 8.55$ metros.<br>3. <strong>Promedio muestral central:</strong> $\\bar{x} = \\frac{8.55}{5} = 1.71$ metros.`,
+              result: `\\bar{x} = 1.71\\text{ metros}`
             }];
           } else if (ex.id === '2.1') {
             generatedVariants.value = [{
-              question: `Calcula la covarianza para las variables con valores cruzados modificados:<br> Alumno 1: (3, 5)<br> Alumno 2: (5, 7)<br> Alumno 3: (7, 9)`,
-              solution: `1. Medias: $\\bar{x} = 5$, $\\bar{y} = 7$.<br>2. Suma productos: $(3 \\cdot 5) + (5 \\cdot 7) + (7 \\cdot 9) = 15 + 35 + 63 = 113$.<br>3. Media de los productos: $\\frac{113}{3} \\approx 37.67$.<br>4. Restar producto de medias: $37.67 - 35 = 2.67$.`,
+              question: `Calcula la covarianza muestral para una distribución bidimensional de las siguientes parejas de datos (horas de estudio X, calificación Y): Alumno A: (1, 3); Alumno B: (3, 5); Alumno C: (5, 7).`,
+              solution: `1. <strong>Medias aritméticas individuales:</strong> $\\bar{x} = 3$, $\\bar{y} = 5$.<br>2. <strong>Promedio del producto cruzado:</strong> $\\frac{(1 \\cdot 3) + (3 \\cdot 5) + (5 \\cdot 7)}{3} = \\frac{3 + 15 + 35}{3} = \\frac{53}{3} \\approx 17.67$.<br>3. <strong>Aplicando fórmula abreviada de la Covarianza:</strong> $S_{xy} = 17.67 - (3 \\cdot 5) = 17.67 - 15 = 2.67$.`,
               result: `S_{xy} = 2.67`
             }];
           } else {
             generatedVariants.value = [{
-              question: `Variante aleatoria de cálculo de probabilidad de muestra estándar de Gauss: Sea $X \\sim N(12, 3)$. Calcula $P(X < 15)$.`,
-              solution: `1. Tipificamos: $Z = \\frac{15 - 12}{3} = 1.0$.<br>2. Área bajo la curva Normal Estándar: $P(Z < 1.0) = 0.8413$.`,
+              question: `Variante de Distribución Normal: Sea una variable aleatoria $X \\sim N(12, 3)$. Calcula la probabilidad acumulada $P(X < 15)$.`,
+              solution: `1. <strong>Tipificar la variable para normalizar:</strong> $Z = \\frac{15 - 12}{3} = \\frac{3}{3} = 1.0$.<br>2. <strong>Consultar la tabla de Gauss para Z = 1.0:</strong> la probabilidad acumulada es $0.8413$.`,
               result: `P(X < 15) = 0.8413`
             }];
           }
-
           showVariantsModal.value = true;
           triggerMathRender();
         };
@@ -2174,8 +2583,8 @@
           });
 
           try {
-            const systemPrompt = `Eres un catedrático universitario de Estadística experto, didáctico y empático. 
-            Ayudas al alumno a razonar paso a paso. Utiliza un tono motivador e incluye fórmulas matemáticas usando el formato estricto de LaTeX encerrándolas en $ para inline y $$ para display matemático. Responde en español de forma concisa pero matemáticamente sólida.`;
+            const systemPrompt = `Eres un catedrático de universidad de Estadística didáctico y empático. 
+            Ayudas al alumno a razonar paso a paso. Utiliza un tono motivador e incluye fórmulas matemáticas usando el formato de LaTeX encerrándolas en $ para inline y $$ para display matemático. Responde en español de forma concisa.`;
 
             let responseText = "";
             if (apiKey === "") {
@@ -2186,14 +2595,13 @@
 
             aiChatMessages.value.push({ role: 'assistant', text: responseText });
           } catch (error) {
-            aiChatMessages.value.push({ role: 'assistant', text: 'Error de conexión. Por favor comprueba tu conexión de red o vuelve a intentarlo más tarde.' });
+            aiChatMessages.value.push({ role: 'assistant', text: 'Error de conexión con el tutor. Por favor comprueba tu conexión de red o vuelve a intentarlo más tarde.' });
           } finally {
             aiLoading.value = false;
             triggerMathRender();
           }
         };
 
-        // Simulated AI solver when no API key is set
         const simulateAIResponse = (query) => {
           return new Promise((resolve) => {
             setTimeout(() => {
@@ -2201,7 +2609,7 @@
               if (q.includes('bayes') || q.includes('probabilidad')) {
                 resolve(`El **Teorema de Bayes** calcula la probabilidad condicional inversa:
                 $$P(A|B) = \\frac{P(B|A)P(A)}{P(B)}$$
-                Donde $P(A|B)$ es la probabilidad de que ocurra la causa $A$ dado que ya ocurrió el evento $B$. Es ideal para diagnosticar problemas médicos o errores en transmisiones.`);
+                Donde $P(A|B)$ es la probabilidad de que ocurra la causa $A$ dado que ya ocurrió el evento $B$. Es idóneo para diagnosticar problemas médicos.`);
               } else if (q.includes('normal') || q.includes('gauss')) {
                 resolve(`La **Distribución Normal** se representa por la campana simétrica. Para calcular probabilidades acumuladas tipificamos:
                 $$Z = \\frac{X - \\mu}{\\sigma}$$
@@ -2211,7 +2619,7 @@
                 $$r = \\frac{S_{xy}}{S_x \\cdot S_y}$$
                 Recuerda que si $r > 0$ la relación es ascendente, si $r < 0$ descendente y si $r = 0$ no hay asociación lineal.`);
               } else {
-                resolve(`Entendido. La estadística descriptiva se fundamenta en la centralización y la dispersión. Para estimar parámetros utilizamos la fórmula del error máximo en intervalos de confianza:
+                resolve(`Entendido. La estadística descriptiva se fundamenta en la centralización y la dispersión. Para estimar parámetros de confianza utilizamos:
                 $$E = z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}}$$
                 ¿Hay algún cálculo o ejercicio concreto que quieras que resolvamos paso a paso?`);
               }
@@ -2219,7 +2627,6 @@
           });
         };
 
-        // Real Gemini 2.5 Flash API fetch with exponential backoff
         const fetchGeminiAPI = async (query, systemPrompt) => {
           const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
           const payload = {
@@ -2239,9 +2646,7 @@
                 const data = await res.json();
                 return data.candidates?.[0]?.content?.parts?.[0]?.text;
               }
-            } catch (err) {
-              // Retry on error
-            }
+            } catch (err) {}
             await new Promise(resolve => setTimeout(resolve, delay));
             delay *= 2;
           }
@@ -2280,7 +2685,8 @@
             totalStudyTime: totalStudyTime.value,
             totalExercisesSolved: totalExercisesSolved.value,
             completedUnitsCount: completedUnitsCount.value,
-            accuracyRate: accuracyRate.value
+            accuracyRate: accuracyRate.value,
+            contentLibrary: contentLibrary.value
           };
           localStorage.setItem('master_estadisticas_state', JSON.stringify(state));
         };
@@ -2297,9 +2703,8 @@
               totalExercisesSolved.value = parsed.totalExercisesSolved || 12;
               completedUnitsCount.value = parsed.completedUnitsCount || 1;
               accuracyRate.value = parsed.accuracyRate || 85;
-            } catch (e) {
-              // Fail silently
-            }
+              if (parsed.contentLibrary) contentLibrary.value = parsed.contentLibrary;
+            } catch (e) {}
           }
         };
 
@@ -2318,7 +2723,6 @@
           triggerMathRender();
         };
 
-        // Increment study time timer
         onMounted(() => {
           loadFromLocalStorage();
           triggerMathRender();
@@ -2412,13 +2816,41 @@
           showAdminModal,
           adminAuthenticated,
           adminForm,
-          adminUploadedFiles,
           openAdminModal,
           verifyAdminCredentials,
           logoutAdmin,
-          simulatePdfDrop,
-          handlePdfDrop,
-          handleFileSelect,
+          activeAdminTab,
+          docTypesList,
+          contentLibrary,
+          stagedFile,
+          stagingForm,
+          handleAdminFileSelect,
+          handleAdminPdfDrop,
+          publishStagedFile,
+          showDeleteConfirmModal,
+          fileToDeleteId,
+          triggerDeleteFile,
+          confirmDeleteFile,
+          showMoveModal,
+          fileToMove,
+          moveForm,
+          triggerMoveFile,
+          confirmMoveFile,
+          showReplaceModal,
+          fileToReplace,
+          replaceStagedFile,
+          triggerReplaceFile,
+          handleReplaceFileSelect,
+          confirmReplaceFile,
+          showEditMetadataModal,
+          fileToEditMetadata,
+          editMetadataForm,
+          triggerEditMetadata,
+          confirmEditMetadata,
+          toggleSourceEnabled,
+          moveSourceUp,
+          moveSourceDown,
+          prioritizedSources,
           showVariantsModal,
           targetExerciseForVariant,
           generatedVariants,
